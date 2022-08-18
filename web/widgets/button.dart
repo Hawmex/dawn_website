@@ -46,7 +46,7 @@ class _ButtonState extends State<Button> {
         'opacity': widget.onTap == null ? '0.64' : '1',
         'user-select': 'none',
         'cursor': 'pointer',
-        'border-radius': '100000px',
+        'border-radius': '10000px',
         'font-size': '14px',
         'font-variation-settings': '"wght" 700',
         'height': 'max-content',

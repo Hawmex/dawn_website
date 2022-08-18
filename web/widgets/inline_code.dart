@@ -15,11 +15,10 @@ class InlineCode extends StatelessWidget {
         'background': '#0f192a',
         'font-variation-settings': '"wght" 500',
         'color': 'white',
-        'padding': '2px 4px',
-        'line-height': '20px',
+        'white-space': 'nowrap',
+        'padding': '4px 8px',
         'width': 'max-content',
-        'display': 'inline-block',
-        'border-radius': '4px',
+        'border-radius': '10000px',
       }),
     );
   }

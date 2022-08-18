@@ -24,7 +24,6 @@ class CodeBlock extends StatelessWidget {
             'font-family': 'FiraCodeVF',
             'font-variation-settings': '"wght" 500',
             'font-size': '12px',
-            'align-items': 'center',
             'white-space': 'pre',
             'overflow': 'auto',
           }),
@@ -50,7 +49,7 @@ class CodeBlock extends StatelessWidget {
         'color': 'white',
         'border-radius': '16px',
         'max-height': 'calc(100vh - 64px)',
-        'line-height': '20px',
+        'line-height': '1.5',
       }),
     );
   }

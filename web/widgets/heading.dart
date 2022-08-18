@@ -10,7 +10,7 @@ class Heading extends StatelessWidget {
     return Text(
       value,
       style: const Style({
-        'font-size': '20px',
+        'font-size': '24px',
         'font-variation-settings': '"wght" 600',
       }),
     );
