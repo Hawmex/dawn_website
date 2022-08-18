@@ -18,9 +18,9 @@ class CodeBlock extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       [
-        Text(
-          language != Language.none ? '' : value,
-          style: const Style({
+        const Text(
+          '',
+          style: Style({
             'font-family': 'FiraCodeVF',
             'font-variation-settings': '"wght" 500',
             'font-size': '12px',

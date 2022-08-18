@@ -19,7 +19,7 @@ class CliDocs extends StatelessWidget {
       TopBar(
         title: 'CLI Docs',
         trailing: [
-          Button('Back', onTap: (final event) => context.pop(), solid: true),
+          Button('Go Back', onTap: (final event) => context.pop(), solid: true),
         ],
       ),
       const Content([
@@ -103,7 +103,7 @@ class CliDocs extends StatelessWidget {
         Section([
           Heading('Example'),
           CodeBlock(
-            'dawn compile --server --port 5501 --mode prod',
+            'dawn compile --serve --port 5501 --mode prod',
             language: Language.powershell,
           ),
           Text('Or:'),

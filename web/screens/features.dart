@@ -109,7 +109,7 @@ class Features extends StatelessWidget {
       TopBar(
         title: 'Features',
         trailing: [
-          Button('Back', onTap: (final event) => context.pop(), solid: true),
+          Button('Go Back', onTap: (final event) => context.pop(), solid: true),
         ],
       ),
       const Content([

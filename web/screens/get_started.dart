@@ -22,7 +22,7 @@ class GetStarted extends StatelessWidget {
         title: 'Get Started',
         trailing: [
           const DocsDropDown(),
-          Button('Back', onTap: (final event) => context.pop(), solid: true),
+          Button('Go Back', onTap: (final event) => context.pop(), solid: true),
         ],
       ),
       const Content(
