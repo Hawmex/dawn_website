@@ -12,9 +12,9 @@ class App extends StatelessWidget {
     return const Container(
       [Navigator(child: Home())],
       style: Style({
-        'height': '100vh',
-        'font-size': '16px',
         'font-family': 'JostVF',
+        'font-size': '16px',
+        'height': '100vh',
         'overflow': 'auto',
       }),
     );

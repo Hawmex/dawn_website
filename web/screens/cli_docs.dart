@@ -1,9 +1,11 @@
 import 'package:dawn/dawn.dart';
 
+import '../utils/syntax_highlighting.dart';
 import '../widgets/button.dart';
-import '../widgets/code.dart';
+import '../widgets/code_block.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
+import '../widgets/inline_code.dart';
 import '../widgets/screen.dart';
 import '../widgets/section.dart';
 import '../widgets/top_bar.dart';
@@ -32,9 +34,9 @@ class CliDocs extends StatelessWidget {
           Heading('Global Options'),
           Text('These options are globally available in the Dawn CLI.'),
           Container([
-            Code('-h', inline: true),
+            InlineCode('-h'),
             Text(', '),
-            Code('--help', inline: true),
+            InlineCode('--help'),
             Text(': Print this usage information.'),
           ]),
         ]),
@@ -42,13 +44,13 @@ class CliDocs extends StatelessWidget {
           Heading('Available Commands'),
           Text('Two main commands are provided.'),
           Container([
-            Code('create [app_name]', inline: true),
+            InlineCode('create <app_name>'),
             Text(': Sets up a new Dawn app.'),
           ]),
           Container([
-            Code('compile', inline: true),
+            InlineCode('compile'),
             Text(': Compiles '),
-            Code('/web', inline: true),
+            InlineCode('/web'),
             Text(' directory contents.'),
           ]),
         ]),
@@ -56,23 +58,23 @@ class CliDocs extends StatelessWidget {
           Heading('Compile Options'),
           Container([
             Text('The '),
-            Code('compile', inline: true),
+            InlineCode('compile'),
             Text(' command has several options available.'),
           ]),
           Container([
-            Code('-m', inline: true),
+            InlineCode('-m'),
             Text(', '),
-            Code('--mode', inline: true),
+            InlineCode('--mode'),
             Text(': Compilation mode.'),
           ]),
           Container(
             [
               Container([
-                Code('dev', inline: true),
+                InlineCode('dev'),
                 Text(' (default): Development mode.'),
               ]),
               Container([
-                Code('prod', inline: true),
+                InlineCode('prod'),
                 Text(': Production mode.'),
               ]),
             ],
@@ -84,25 +86,31 @@ class CliDocs extends StatelessWidget {
             }),
           ),
           Container([
-            Code('-s', inline: true),
+            InlineCode('-s'),
             Text(', '),
-            Code('--[no-]serve', inline: true),
+            InlineCode('--[no-]serve'),
             Text(': Run a local server.'),
           ]),
           Container([
-            Code('-p', inline: true),
+            InlineCode('-p'),
             Text(', '),
-            Code('--port', inline: true),
+            InlineCode('--port'),
             Text(': Local server port (defaults to '),
-            Code('5500', inline: true),
+            InlineCode('5500'),
             Text(').'),
           ]),
         ]),
         Section([
           Heading('Example'),
-          Code('dawn compile --server --port 5501 --mode prod'),
+          CodeBlock(
+            'dawn compile --server --port 5501 --mode prod',
+            language: Language.powershell,
+          ),
           Text('Or:'),
-          Code('dawn compile -s -p 5501 -m prod'),
+          CodeBlock(
+            'dawn compile -s -p 5501 -m prod',
+            language: Language.powershell,
+          ),
         ]),
       ]),
     ]);

@@ -1,9 +1,11 @@
 import 'package:dawn/dawn.dart';
 
+import '../utils/syntax_highlighting.dart';
 import '../widgets/button.dart';
-import '../widgets/code.dart';
+import '../widgets/code_block.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
+import '../widgets/inline_code.dart';
 import '../widgets/screen.dart';
 import '../widgets/section.dart';
 import '../widgets/top_bar.dart';
@@ -112,19 +114,19 @@ class Features extends StatelessWidget {
       ),
       const Content([
         Section([
-          Heading('Why Dawn Exists'),
+          Heading('First Of All, Why Dawn Exists'),
           Container([
             Text(
               'Flutter is great, especially its syntax and its concepts '
               'such as ',
             ),
-            Code('BuildContext', inline: true),
+            InlineCode('BuildContext'),
             Text(', '),
-            Code('StatelessWidget', inline: true),
+            InlineCode('StatelessWidget'),
             Text(', '),
-            Code('StatefulWidget', inline: true),
+            InlineCode('StatefulWidget'),
             Text(', '),
-            Code('State', inline: true),
+            InlineCode('State'),
             Text(
               ', etc. But it\'s considerably harder in terms of styling '
               'and development pace compared to HTML and CSS. So, Dawn is '
@@ -132,23 +134,17 @@ class Features extends StatelessWidget {
               'styling it using CSS.',
             ),
           ]),
-        ]),
-        Section([
-          Heading('Basic, Yet Useful Widgets'),
-          Text('Dawn provides your favorite widgets and builders.'),
-          Code('InheritedWidget', inline: true),
-          Code('StatelessWidget', inline: true),
-          Code('StatefulWidget', inline: true),
-          Code('StatelessBuilder', inline: true),
-          Code('StatefulBuilder', inline: true),
-          Code('FutureBuilder', inline: true),
-          Code('StreamBuilder', inline: true),
-          Code('ConsumerBuilder', inline: true),
-          Code('Text', inline: true),
-          Code('Image', inline: true),
-          Code('Container', inline: true),
-          Code('Navigator', inline: true),
-          Code('Provider', inline: true),
+          Section([
+            Heading('JavaScript Interoperability'),
+            Container([
+              Text(
+                'This website is made with Dawn itself. However, code '
+                'snippets use ',
+              ),
+              InlineCode('Prism.js'),
+              Text(' for syntax highlighting.'),
+            ]),
+          ]),
         ]),
         Section([
           Heading('CLI'),
@@ -158,13 +154,30 @@ class Features extends StatelessWidget {
           )
         ]),
         Section([
+          Heading('Basic, Yet Useful Widgets'),
+          Text('Dawn provides your favorite widgets and builders.'),
+          InlineCode('InheritedWidget'),
+          InlineCode('StatelessWidget'),
+          InlineCode('StatefulWidget'),
+          InlineCode('StatelessBuilder'),
+          InlineCode('StatefulBuilder'),
+          InlineCode('FutureBuilder'),
+          InlineCode('StreamBuilder'),
+          InlineCode('ConsumerBuilder'),
+          InlineCode('Text'),
+          InlineCode('Image'),
+          InlineCode('Container'),
+          InlineCode('Navigator'),
+          InlineCode('Provider'),
+        ]),
+        Section([
           Heading('Styles'),
           Container([
             Text('Dawn uses CSS styling via '),
-            Code('Map<String, String>', inline: true),
+            InlineCode('Map<String, String>'),
             Text('.'),
           ]),
-          Code(_stylingExample),
+          CodeBlock(_stylingExample, language: Language.dart),
         ]),
         Section([
           Heading('Animations'),
@@ -172,7 +185,7 @@ class Features extends StatelessWidget {
             'Dawn has a built-in animation system that comes with '
             'multiple parameters.',
           ),
-          Code(_animationSample),
+          CodeBlock(_animationSample, language: Language.dart),
         ]),
         Section([
           Heading('Extensibility'),
@@ -180,7 +193,7 @@ class Features extends StatelessWidget {
             'Dawn gives its users the ability to extend the '
             'framework and create their own low-level widgets.',
           ),
-          Code(_extensibilityExample),
+          CodeBlock(_extensibilityExample, language: Language.dart),
         ]),
       ]),
     ]);

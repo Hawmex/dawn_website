@@ -52,16 +52,14 @@ class _ButtonState extends State<Button> {
         'height': 'max-content',
       }),
       onTap: widget.onTap,
-      onPointerEnter: (final event) => setState(
-        () => _backgroundOpacity = '0.08',
-      ),
       onPointerLeave: (final event) => setState(() => _backgroundOpacity = '0'),
-      onPointerDown: (final event) => setState(
-        () => _backgroundOpacity = '0.16',
-      ),
-      onPointerUp: (final event) => setState(
-        () => _backgroundOpacity = '0.08',
-      ),
+      onPointerUp: (final event) => setState(() => _backgroundOpacity = '0.08'),
+      onPointerEnter: (final event) => setState(() {
+        _backgroundOpacity = '0.08';
+      }),
+      onPointerDown: (final event) => setState(() {
+        _backgroundOpacity = '0.16';
+      }),
       animation: const Animation(
         keyframes: [
           Keyframe(

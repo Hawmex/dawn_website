@@ -1,10 +1,12 @@
 import 'package:dawn/dawn.dart';
 
 import '../components/docs_dropdown.dart';
+import '../utils/syntax_highlighting.dart';
 import '../widgets/button.dart';
-import '../widgets/code.dart';
+import '../widgets/code_block.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
+import '../widgets/inline_code.dart';
 import '../widgets/link.dart';
 import '../widgets/screen.dart';
 import '../widgets/section.dart';
@@ -46,7 +48,10 @@ class GetStarted extends StatelessWidget {
             Text(
               'First, we need to install Dawn CLI by globally activating Dawn.',
             ),
-            Code('dart pub global activate dawn'),
+            CodeBlock(
+              'dart pub global activate dawn',
+              language: Language.powershell,
+            ),
           ]),
           Section([
             Heading('Create A New Dawn App'),
@@ -54,24 +59,33 @@ class GetStarted extends StatelessWidget {
               'Now that we have Dawn CLI installed, we can simply run a '
               'Dawn command to create a new app.',
             ),
-            Code('dawn create my_awesome_app'),
+            CodeBlock(
+              'dawn create my_awesome_app',
+              language: Language.powershell,
+            ),
           ]),
           Section([
             Heading('Open Project Directory'),
             Text('Next, we head to the directory of our project.'),
-            Code('cd my_awesome_app'),
+            CodeBlock(
+              'cd my_awesome_app',
+              language: Language.powershell,
+            ),
           ]),
           Section([
             Heading('Start Development Environment'),
             Container([
               Text('Now, we can edit the '),
-              Code('/web', inline: true),
+              InlineCode('/web'),
               Text(
                 ' directory in our project. To see the changes, we can run a '
                 'development server using Dawn CLI.',
               ),
             ]),
-            Code('dawn compile -s'),
+            CodeBlock(
+              'dawn compile -s',
+              language: Language.powershell,
+            ),
           ]),
           Section([
             Heading('Compile For Production'),
@@ -79,10 +93,13 @@ class GetStarted extends StatelessWidget {
               'Finally, to get the production-ready output of our app, we '
               'run the following Dawn command.',
             ),
-            Code('dawn compile -m prod'),
+            CodeBlock(
+              'dawn compile -m prod',
+              language: Language.powershell,
+            ),
             Container([
               Text('Production output, will be available at '),
-              Code('/.dawn/prod', inline: true),
+              InlineCode('/.dawn/prod'),
               Text(' .'),
             ]),
           ]),
