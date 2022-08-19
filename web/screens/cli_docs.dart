@@ -1,7 +1,6 @@
 import 'package:dawn/dawn.dart';
 
 import '../utils/syntax_highlighting.dart';
-import '../widgets/button.dart';
 import '../widgets/code_block.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
@@ -15,14 +14,9 @@ class CliDocs extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Screen([
-      TopBar(
-        title: 'CLI Docs',
-        trailing: [
-          Button('Go Back', onTap: (final event) => context.pop(), solid: true),
-        ],
-      ),
-      const Content([
+    return const Screen([
+      TopBar(title: 'CLI Docs'),
+      Content([
         Section([
           Heading('Introduction'),
           Text(

@@ -6,18 +6,16 @@ class Screen extends StatelessWidget {
   const Screen(this.children, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       children,
       style: const Style({
-        'background': '#1d2737',
-        'color': 'white',
         'min-height': '100vh',
-        'display': 'flex',
+        'display': 'grid',
+        'grid-template-rows': 'max-content 1fr',
         'overflow': 'hidden',
-        'justify-content': 'space-between',
-        'flex-flow': 'column',
-        'align-items': 'center',
+        'background': '#1d2737',
+        'color': '#1d2737',
       }),
     );
   }

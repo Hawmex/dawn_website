@@ -1,7 +1,6 @@
 import 'package:dawn/dawn.dart';
 
 import '../utils/syntax_highlighting.dart';
-import '../widgets/button.dart';
 import '../widgets/code_block.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
@@ -105,14 +104,9 @@ class Features extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Screen([
-      TopBar(
-        title: 'Features',
-        trailing: [
-          Button('Go Back', onTap: (final event) => context.pop(), solid: true),
-        ],
-      ),
-      const Content([
+    return const Screen([
+      TopBar(title: 'Features'),
+      Content([
         Section([
           Heading('First Of All, Why Dawn Exists'),
           Container([

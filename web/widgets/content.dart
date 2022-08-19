@@ -14,6 +14,7 @@ class Content extends StatelessWidget {
         'flex-flow': 'column',
         'align-self': 'start',
         'padding': '32px',
+        'min-width': '0px',
         'gap': '32px',
         'background': 'white',
         'color': 'black',

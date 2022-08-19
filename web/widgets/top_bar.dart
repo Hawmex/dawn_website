@@ -1,10 +1,12 @@
 import 'package:dawn/dawn.dart';
 
+import 'button.dart';
+
 class TopBar extends StatelessWidget {
   final String title;
-  final List<Widget> trailing;
+  final Widget? trailing;
 
-  const TopBar({required this.title, this.trailing = const [], super.key});
+  const TopBar({required this.title, this.trailing, super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -32,7 +34,16 @@ class TopBar extends StatelessWidget {
           ),
         ),
         Container(
-          trailing,
+          [
+            if (trailing != null)
+              trailing!
+            else
+              Button(
+                'Go Back',
+                solid: true,
+                onTap: (final event) => context.pop(),
+              ),
+          ],
           style: const Style({'display': 'flex', 'gap': '16px'}),
         ),
       ],
@@ -40,6 +51,9 @@ class TopBar extends StatelessWidget {
         'display': 'flex',
         'gap': '16px',
         'padding': '32px',
+        'background': '#1d2737',
+        'color': 'white',
+        'min-width': '0px',
         'align-items': 'center',
         'justify-content': 'space-between',
         'width': '100%',
