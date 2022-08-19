@@ -74,6 +74,7 @@ class Home extends StatelessWidget {
               [
                 Image(
                   '/assets/code.png',
+                  alternativeText: 'Example Code',
                   style: Style({
                     'width': html.window.innerWidth! > 720 ? '360px' : '100%',
                     'border-radius': '32px',
