@@ -21,8 +21,9 @@ class CodeBlock extends StatelessWidget {
         const Text(
           '',
           style: Style({
-            'font-family': 'FiraCodeVF',
+            'font-family': '"FiraCodeVF"',
             'font-variation-settings': '"wght" 500',
+            'padding': '16px 32px',
             'font-size': '12px',
             'white-space': 'pre',
             'overflow': 'auto',
@@ -32,24 +33,23 @@ class CodeBlock extends StatelessWidget {
           [
             Button(
               'Copy',
-              onTap: (final event) {
-                html.window.navigator.clipboard!.writeText(value);
-              },
+              onTap: (final event) =>
+                  html.window.navigator.clipboard!.writeText(value),
             ),
           ],
-          style: const Style({'align-self': 'end'}),
+          style: const Style({'align-self': 'end', 'padding': '16px'}),
         ),
       ],
       style: const Style({
         'display': 'flex',
         'flex-flow': 'column',
-        'gap': '16px',
-        'padding': '16px',
         'background': '#0f192a',
         'color': 'white',
         'border-radius': '16px',
-        'max-height': 'calc(100vh - 64px)',
-        'line-height': '1.5',
+        'width': 'calc(100% + 64px)',
+        'margin-left': '-32px',
+        'line-height': '20px',
+        'overflow': 'hidden',
       }),
     );
   }

@@ -16,27 +16,21 @@ class Donate extends StatelessWidget {
     return const Screen([
       TopBar(title: 'Donate'),
       Content([
+        Section([Heading('Support Me In Developing Dawn')]),
         Section([
-          Heading('Support Me In Developing Dawn'),
-          Container([
-            InlineCode('BTC'),
-            Text(' address:'),
-          ]),
+          Container([InlineCode('BTC'), Text(' address:')]),
           CodeBlock('bc1qsrzrs5ajewzgq6vk2ruhu8l774udspnpdqd8w2'),
-          Container([
-            InlineCode('ETH'),
-            Text(' address:'),
-          ]),
+        ]),
+        Section([
+          Container([InlineCode('ETH'), Text(' address:')]),
           CodeBlock('0x421B7049B17D3a85Ed7501D9FBd2eb3bEFA7b39e'),
-          Container([
-            InlineCode('USDT (TRC20)'),
-            Text(' address:'),
-          ]),
+        ]),
+        Section([
+          Container([InlineCode('USDT (TRC20)'), Text(' address:')]),
           CodeBlock('TEdM59aYLxpZhXd26Smeg7TccPouzcoZ13'),
-          Container([
-            InlineCode('USDT (ERC20)'),
-            Text(' address:'),
-          ]),
+        ]),
+        Section([
+          Container([InlineCode('USDT (ERC20)'), Text(' address:')]),
           CodeBlock('0x421B7049B17D3a85Ed7501D9FBd2eb3bEFA7b39e'),
         ]),
       ]),

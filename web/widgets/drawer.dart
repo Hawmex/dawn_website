@@ -34,23 +34,30 @@ class _DrawerState extends State<Drawer> {
       [
         Scrim(isOpen: _isOpen),
         Container(
-          widget.children,
+          [
+            Container(
+              widget.children,
+              style: const Style({
+                'display': 'flex',
+                'flex-flow': 'column',
+                'gap': '16px',
+                'padding': '32px',
+              }),
+            ),
+          ],
           style: Style({
-            'background': '#1d2737',
+            'background': '#0f192a',
             'position': 'absolute',
             'top': '0px',
             'left': '0px',
             'height': '100vh',
+            'overflow': 'auto',
             'width':
                 html.window.innerWidth! > 720 ? '256px' : 'calc(100vw - 56px)',
-            'display': 'flex',
-            'flex-flow': 'column',
-            'gap': '16px',
-            'padding': '16px',
             'transform': _isOpen ? 'translateX(0%)' : 'translateX(-100%)',
             'transition': 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
           }),
-        )
+        ),
       ],
       style: const Style({'display': 'contents'}),
     );

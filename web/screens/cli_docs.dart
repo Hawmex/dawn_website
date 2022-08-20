@@ -43,7 +43,7 @@ class CliDocs extends StatelessWidget {
           ]),
           Container([
             InlineCode('compile'),
-            Text(': Compiles '),
+            Text(': Compiles the '),
             InlineCode('/web'),
             Text(' directory contents.'),
           ]),
@@ -67,15 +67,12 @@ class CliDocs extends StatelessWidget {
                 InlineCode('dev'),
                 Text(' (default): Development mode.'),
               ]),
-              Container([
-                InlineCode('prod'),
-                Text(': Production mode.'),
-              ]),
+              Container([InlineCode('prod'), Text(': Production mode.')]),
             ],
             style: Style({
               'display': 'flex',
               'flex-flow': 'column',
-              'padding-left': '32px',
+              'padding-left': '48px',
               'gap': '8px'
             }),
           ),

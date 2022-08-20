@@ -16,7 +16,10 @@ class TopBar extends StatelessWidget {
           title,
           style: const Style({
             'font-size': '32px',
+            'line-height': '36px',
             'font-variation-settings': '"wght" 600',
+            'padding': '0px 16px',
+            'white-space': 'nowrap',
           }),
           animation: const Animation(
             keyframes: [
@@ -49,7 +52,7 @@ class TopBar extends StatelessWidget {
       ],
       style: const Style({
         'display': 'flex',
-        'gap': '16px',
+        'gap': '32px',
         'padding': '32px',
         'background': '#1d2737',
         'color': 'white',
@@ -57,6 +60,7 @@ class TopBar extends StatelessWidget {
         'align-items': 'center',
         'justify-content': 'space-between',
         'width': '100%',
+        'overflow-x': 'auto',
       }),
       animation: const Animation(
         keyframes: [

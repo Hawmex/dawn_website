@@ -128,16 +128,16 @@ class Features extends StatelessWidget {
               'styling it using CSS.',
             ),
           ]),
-          Section([
-            Heading('JavaScript Interoperability'),
-            Container([
-              Text(
-                'This website is made with Dawn itself. However, code '
-                'snippets use ',
-              ),
-              InlineCode('Prism.js'),
-              Text(' for syntax highlighting.'),
-            ]),
+        ]),
+        Section([
+          Heading('JavaScript Interoperability'),
+          Container([
+            Text(
+              'This website is made with Dawn itself. However, code '
+              'snippets use ',
+            ),
+            InlineCode('Prism.js'),
+            Text(' for syntax highlighting.'),
           ]),
         ]),
         Section([

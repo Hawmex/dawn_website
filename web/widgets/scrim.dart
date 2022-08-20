@@ -16,7 +16,7 @@ class Scrim extends StatelessWidget {
         'height': '100vh',
         'left': '0px',
         'top': '0px',
-        'background': isOpen ? 'rgb(0 0 0 / 0.16)' : 'transparent',
+        'background': isOpen ? 'rgb(255 255 255 / 0.08)' : 'transparent',
         'visibility': isOpen ? 'visible' : 'hidden',
         'transition': '''
           background 300ms cubic-bezier(0.4, 0, 0.2, 1),

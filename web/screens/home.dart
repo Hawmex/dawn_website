@@ -28,21 +28,25 @@ class Home extends StatelessWidget {
               'Build Fast & User-Friendly Web Apps',
               style: Style({
                 'font-size': '48px',
+                'line-height': '64px',
                 'font-variation-settings': '"wght" 700',
                 'text-align': 'center',
-                'padding': '32px',
               }),
               animation: Animation(
                 keyframes: [
                   Keyframe(
                     offset: 0,
-                    style: Style(
-                        {'opacity': '0', 'transform': 'translateY(100%)'}),
+                    style: Style({
+                      'opacity': '0',
+                      'transform': 'translateY(100%)',
+                    }),
                   ),
                   Keyframe(
                     offset: 1,
-                    style:
-                        Style({'opacity': '1', 'transform': 'translateY(0%)'}),
+                    style: Style({
+                      'opacity': '1',
+                      'transform': 'translateY(0%)',
+                    }),
                   )
                 ],
                 duration: Duration(milliseconds: 300),
@@ -77,16 +81,18 @@ class Home extends StatelessWidget {
                   alternativeText: 'Example Code',
                   style: Style({
                     'width': html.window.innerWidth! > 720 ? '360px' : '100%',
-                    'border-radius': '32px',
+                    'border-radius': '16px',
+                    'max-width': '100%',
                   }),
                 ),
                 Text(
-                  'Dawn is a Dart web framework that lets developers develop UIs '
+                  'Dawn is a Dart web framework that lets developers create UIs '
                   'with a widget model that is similar to Flutter. Dawn '
                   'applications are compiled to JavaScript and are painted using '
                   'HTML and CSS.',
                   style: Style({
                     'font-size': '24px',
+                    'line-height': '36px',
                     'text-align':
                         html.window.innerWidth! > 720 ? 'start' : 'center',
                   }),
@@ -95,21 +101,24 @@ class Home extends StatelessWidget {
               style: Style({
                 'display': 'flex',
                 'flex-flow': html.window.innerWidth! > 720 ? 'row' : 'column',
-                'gap': '32px',
-                'padding': '32px',
+                'gap': '48px',
                 'align-items': 'center',
               }),
               animation: const Animation(
                 keyframes: [
                   Keyframe(
                     offset: 0,
-                    style: Style(
-                        {'opacity': '0', 'transform': 'translateY(100%)'}),
+                    style: Style({
+                      'opacity': '0',
+                      'transform': 'translateY(100%)',
+                    }),
                   ),
                   Keyframe(
                     offset: 1,
-                    style:
-                        Style({'opacity': '1', 'transform': 'translateY(0%)'}),
+                    style: Style({
+                      'opacity': '1',
+                      'transform': 'translateY(0%)',
+                    }),
                   )
                 ],
                 duration: Duration(milliseconds: 300),
@@ -126,6 +135,8 @@ class Home extends StatelessWidget {
             'align-items': 'center',
             'background': '#1d2737',
             'min-width': '0px',
+            'padding': '48px',
+            'gap': '48px',
             'color': 'white',
           }),
         ),

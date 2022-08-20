@@ -46,20 +46,19 @@ class _ButtonState extends State<Button> {
         'opacity': widget.onTap == null ? '0.64' : '1',
         'user-select': 'none',
         'cursor': 'pointer',
-        'border-radius': '10000px',
+        'border-radius': '18px',
         'font-size': '14px',
+        'line-height': '20px',
         'font-variation-settings': '"wght" 700',
         'height': 'max-content',
       }),
       onTap: widget.onTap,
       onPointerLeave: (final event) => setState(() => _backgroundOpacity = '0'),
       onPointerUp: (final event) => setState(() => _backgroundOpacity = '0.08'),
-      onPointerEnter: (final event) => setState(() {
-        _backgroundOpacity = '0.08';
-      }),
-      onPointerDown: (final event) => setState(() {
-        _backgroundOpacity = '0.16';
-      }),
+      onPointerEnter: (final event) =>
+          setState(() => _backgroundOpacity = '0.08'),
+      onPointerDown: (final event) =>
+          setState(() => _backgroundOpacity = '0.16'),
       animation: const Animation(
         keyframes: [
           Keyframe(

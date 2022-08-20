@@ -8,6 +8,7 @@ import 'screens/features.dart';
 import 'screens/get_started.dart';
 import 'screens/home.dart';
 import 'widgets/button.dart';
+import 'widgets/divider.dart';
 import 'widgets/drawer.dart';
 
 void main() => runApp(const App());
@@ -24,40 +25,32 @@ class App extends StatelessWidget {
           Button(
             'Get Started',
             onTap: (final event) => context
-              ..pushRoute(
-                builder: (final context) => const GetStarted(),
-              )
+              ..pushRoute(builder: (final context) => const GetStarted())
               ..pop(),
           ),
+          const Divider(),
           Button(
             'Features',
             onTap: (final event) => context
-              ..pushRoute(
-                builder: (final context) => const Features(),
-              )
+              ..pushRoute(builder: (final context) => const Features())
               ..pop(),
           ),
           Button(
             'Package Docs',
-            onTap: (final event) => html.window.open(
-              'https://pub.dev/documentation/dawn',
-              '',
-            ),
+            onTap: (final event) =>
+                html.window.open('https://pub.dev/documentation/dawn', ''),
           ),
           Button(
             'CLI Docs',
             onTap: (final event) => context
-              ..pushRoute(
-                builder: (final context) => const CliDocs(),
-              )
+              ..pushRoute(builder: (final context) => const CliDocs())
               ..pop(),
           ),
+          const Divider(),
           Button(
             'Donate',
             onTap: (final event) => context
-              ..pushRoute(
-                builder: (final context) => const Donate(),
-              )
+              ..pushRoute(builder: (final context) => const Donate())
               ..pop(),
           ),
         ])
@@ -65,6 +58,7 @@ class App extends StatelessWidget {
       style: const Style({
         'font-family': 'JostVF',
         'font-size': '16px',
+        'line-height': '24px',
         'height': '100vh',
         'overflow': 'auto',
       }),

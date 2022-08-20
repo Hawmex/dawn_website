@@ -10,15 +10,16 @@ class InlineCode extends StatelessWidget {
     return Text(
       value,
       style: const Style({
-        'font-family': 'FiraCodeVF',
+        'font-family': '"FiraCodeVF"',
         'font-size': '12px',
+        'line-height': '16px',
         'background': '#0f192a',
         'font-variation-settings': '"wght" 500',
         'color': 'white',
         'white-space': 'nowrap',
         'padding': '4px 8px',
         'width': 'max-content',
-        'border-radius': '10000px',
+        'border-radius': '8px',
       }),
     );
   }

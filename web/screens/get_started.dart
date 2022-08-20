@@ -27,7 +27,7 @@ class GetStarted extends StatelessWidget {
                 text: 'directly install it',
                 address: 'https://dart.dev/get-dart',
               ),
-              Text(' or you can '),
+              Text(' or '),
               Link(
                 text: 'indirectly get it',
                 address: 'https://docs.flutter.dev/get-started/install',
@@ -57,7 +57,7 @@ class GetStarted extends StatelessWidget {
             ),
           ]),
           Section([
-            Heading('Open Project Directory'),
+            Heading('Open The Project Directory'),
             Text('Next, we head to the directory of our project.'),
             CodeBlock(
               'cd my_awesome_app',
@@ -65,7 +65,7 @@ class GetStarted extends StatelessWidget {
             ),
           ]),
           Section([
-            Heading('Start Development Environment'),
+            Heading('Start The Development Environment'),
             Container([
               Text('Now, we can edit the '),
               InlineCode('/web'),
@@ -90,7 +90,7 @@ class GetStarted extends StatelessWidget {
               language: Language.powershell,
             ),
             Container([
-              Text('Production output, will be available at '),
+              Text('You can find the production output at '),
               InlineCode('/.dawn/prod'),
               Text(' .'),
             ]),

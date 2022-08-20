@@ -11,6 +11,7 @@ class Heading extends StatelessWidget {
       value,
       style: const Style({
         'font-size': '24px',
+        'line-height': '36px',
         'font-variation-settings': '"wght" 600',
       }),
     );
