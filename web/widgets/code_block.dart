@@ -27,6 +27,7 @@ class CodeBlock extends StatelessWidget {
             'font-size': '12px',
             'white-space': 'pre',
             'overflow': 'auto',
+            'align-self': 'center',
           }),
         ),
         Container(
@@ -37,12 +38,13 @@ class CodeBlock extends StatelessWidget {
                   html.window.navigator.clipboard!.writeText(value),
             ),
           ],
-          style: const Style({'align-self': 'end', 'padding': '16px'}),
+          style: const Style({'margin-left': 'auto', 'padding': '16px'}),
         ),
       ],
       style: const Style({
         'display': 'flex',
-        'flex-flow': 'column',
+        'flex-flow': 'row',
+        'flex-wrap': 'wrap',
         'background': '#0f192a',
         'color': 'white',
         'border-radius': '16px',
