@@ -69,14 +69,14 @@ class CodeBlockNode extends StatelessNode {
   }
 
   @override
-  void initialize() {
-    super.initialize();
+  void updateSubtree() {
+    super.updateSubtree();
     _highlight();
   }
 
   @override
-  void didWidgetUpdate(final StatelessWidget oldWidget) {
-    super.didWidgetUpdate(oldWidget);
+  void initialize() {
+    super.initialize();
     _highlight();
   }
 }

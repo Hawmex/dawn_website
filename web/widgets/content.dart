@@ -8,7 +8,16 @@ class Content extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Container(
-      children,
+      [
+        const Image(
+          '/assets/waves.svg',
+          style: Style({
+            'margin': '-33px 0px 0px -48px',
+            'width': 'calc(100% + 96px)',
+          }),
+        ),
+        ...children,
+      ],
       style: const Style({
         'display': 'flex',
         'flex-flow': 'column',
