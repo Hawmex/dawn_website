@@ -9,24 +9,15 @@ class Content extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       [
-        const Image(
-          '/assets/waves.svg',
+        const Container(
+          [],
           style: Style({
-            'margin': '-32px 0px -16px -48px',
-            'width': 'calc(130% + 96px)',
-            'height': '32px',
+            'background': 'url(/assets/waves.svg)',
+            'margin': '-32px 0px -48px -48px',
+            'width': 'calc(100% + 96px)',
+            'height': '64px',
             'transform-origin': 'top',
           }),
-          animation: Animation(
-            keyframes: [
-              Keyframe(offset: 0, style: Style({'transform': 'scaleY(0)'})),
-              Keyframe(offset: 1, style: Style({'transform': 'scaleY(1)'}))
-            ],
-            duration: Duration(milliseconds: 600),
-            easing: Easing(0.4, 0, 0.2, 1),
-            startDelay: Duration(milliseconds: 300),
-            fillMode: AnimationFillMode.both,
-          ),
         ),
         ...children,
       ],

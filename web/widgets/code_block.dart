@@ -33,7 +33,7 @@ class CodeBlock extends StatelessWidget {
         Container(
           [
             Button(
-              'Copy',
+              icon: 'content_copy',
               onTap: (final event) =>
                   html.window.navigator.clipboard!.writeText(value),
             ),

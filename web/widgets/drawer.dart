@@ -53,7 +53,7 @@ class _DrawerState extends State<Drawer> {
             'height': '100vh',
             'overflow': 'auto',
             'width':
-                html.window.innerWidth! > 720 ? '256px' : 'calc(100vw - 56px)',
+                html.window.innerWidth! > 720 ? '256px' : 'calc(100vw - 120px)',
             'transform': _isOpen ? 'translateX(0%)' : 'translateX(-100%)',
             'transition': 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
           }),

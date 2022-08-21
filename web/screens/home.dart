@@ -17,8 +17,7 @@ class Home extends StatelessWidget {
         TopBar(
           title: 'Dawn',
           trailing: Button(
-            'Open Drawer',
-            solid: true,
+            icon: 'menu',
             onTap: (final event) => context.openDrawer(),
           ),
         ),
@@ -56,7 +55,8 @@ class Home extends StatelessWidget {
             Container(
               [
                 Button(
-                  'Pub',
+                  text: 'Pub',
+                  icon: 'open_in_new',
                   solid: true,
                   onTap: (final event) => html.window.open(
                     'https://pub.dev/packages/dawn',
@@ -64,7 +64,8 @@ class Home extends StatelessWidget {
                   ),
                 ),
                 Button(
-                  'GitHub',
+                  text: 'GitHub',
+                  icon: 'open_in_new',
                   solid: true,
                   onTap: (final event) => html.window.open(
                     'https://github.com/Hawmex/dawn',

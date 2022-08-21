@@ -16,7 +16,7 @@ class TopBar extends StatelessWidget {
           title,
           style: const Style({
             'font-size': '32px',
-            'line-height': '36px',
+            'line-height': '56px',
             'font-variation-settings': '"wght" 600',
             'padding': '0px 16px',
             'white-space': 'nowrap',
@@ -41,11 +41,7 @@ class TopBar extends StatelessWidget {
             if (trailing != null)
               trailing!
             else
-              Button(
-                'Go Back',
-                solid: true,
-                onTap: (final event) => context.pop(),
-              ),
+              Button(icon: 'arrow_back', onTap: (final event) => context.pop()),
           ],
           style: const Style({'display': 'flex', 'gap': '16px'}),
         ),

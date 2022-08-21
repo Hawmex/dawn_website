@@ -23,32 +23,37 @@ class App extends StatelessWidget {
         const Navigator(child: Home()),
         Drawer([
           Button(
-            'Get Started',
+            text: 'Get Started',
+            icon: 'start',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const GetStarted())
               ..pop(),
           ),
           const Divider(),
           Button(
-            'Features',
+            text: 'Features',
+            icon: 'format_list_bulleted',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const Features())
               ..pop(),
           ),
           Button(
-            'Package Docs',
+            text: 'Package Docs',
+            icon: 'open_in_new',
             onTap: (final event) =>
                 html.window.open('https://pub.dev/documentation/dawn', ''),
           ),
           Button(
-            'CLI Docs',
+            text: 'CLI Docs',
+            icon: 'article',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const CliDocs())
               ..pop(),
           ),
           const Divider(),
           Button(
-            'Donate',
+            text: 'Donate',
+            icon: 'currency_bitcoin',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const Donate())
               ..pop(),

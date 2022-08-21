@@ -1,11 +1,20 @@
 import 'package:dawn/dawn.dart';
 
+import 'icon.dart';
+
 class Button extends StatefulWidget {
-  final String value;
+  final String? icon;
+  final String? text;
   final bool solid;
   final EventListener? onTap;
 
-  const Button(this.value, {this.solid = false, this.onTap, super.key});
+  const Button({
+    this.text,
+    this.icon,
+    this.solid = false,
+    this.onTap,
+    super.key,
+  });
 
   @override
   State createState() => _ButtonState();
@@ -32,23 +41,29 @@ class _ButtonState extends State<Button> {
             'transition': 'opacity 300ms cubic-bezier(0.4, 0, 0.2, 1)',
           }),
         ),
-        Text(widget.value),
+        Container(
+          [
+            if (widget.icon != null) Icon(widget.icon!),
+            if (widget.text != null) Text(widget.text!),
+          ],
+          style: const Style({'display': 'flex', 'gap': '8px'}),
+        ),
       ],
       style: Style({
         'position': 'relative',
         'overflow': 'hidden',
         'min-width': 'max-content',
         'width': '100%',
-        'padding': '8px 16px',
+        'padding': widget.text == null ? '16px' : '8px 16px',
         'color': widget.solid ? '#1d2737' : 'white',
         'background': widget.solid ? 'white' : 'transparent',
         'pointer-events': widget.onTap == null ? 'none' : 'all',
         'opacity': widget.onTap == null ? '0.64' : '1',
         'user-select': 'none',
         'cursor': 'pointer',
-        'border-radius': '18px',
+        'border-radius': '20px',
         'font-size': '14px',
-        'line-height': '20px',
+        'line-height': '24px',
         'font-variation-settings': '"wght" 700',
         'height': 'max-content',
       }),
