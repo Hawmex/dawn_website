@@ -54,7 +54,7 @@ class _DrawerState extends State<Drawer> {
             'width': '100vw',
             'transform': _isOpen ? 'translateY(0%)' : 'translateY(100%)',
             'transition': 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
-            'border-radius': '24px 24px 0px 0px',
+            'border-radius': '36px 36px 0px 0px',
           }),
         ),
       ],
