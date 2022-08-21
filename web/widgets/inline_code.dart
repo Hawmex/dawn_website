@@ -20,6 +20,8 @@ class InlineCode extends StatelessWidget {
         'padding': '4px 8px',
         'width': 'max-content',
         'border-radius': '8px',
+        'direction': 'ltr',
+        'display': 'inline-block',
       }),
     );
   }

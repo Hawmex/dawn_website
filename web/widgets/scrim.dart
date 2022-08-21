@@ -11,7 +11,7 @@ class Scrim extends StatelessWidget {
       [],
       onPointerDown: (final event) => context.pop(),
       style: Style({
-        'position': 'absolute',
+        'position': 'fixed',
         'width': '100vw',
         'height': '100vh',
         'left': '0px',

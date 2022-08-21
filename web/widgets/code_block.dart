@@ -38,7 +38,10 @@ class CodeBlock extends StatelessWidget {
                   html.window.navigator.clipboard!.writeText(value),
             ),
           ],
-          style: const Style({'margin-left': 'auto', 'padding': '16px'}),
+          style: const Style({
+            'margin-inline-start': 'auto',
+            'padding': '16px',
+          }),
         ),
       ],
       style: const Style({
@@ -47,11 +50,12 @@ class CodeBlock extends StatelessWidget {
         'flex-wrap': 'wrap',
         'background': '#0f192a',
         'color': 'white',
-        'border-radius': '16px',
+        'border-radius': '32px',
         'width': 'calc(100% + 64px)',
-        'margin-left': '-32px',
+        'margin-inline': '-32px',
         'line-height': '20px',
         'overflow': 'hidden',
+        'direction': 'ltr',
       }),
     );
   }

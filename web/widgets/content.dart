@@ -12,7 +12,8 @@ class Content extends StatelessWidget {
         const Image(
           '/assets/waves.svg',
           style: Style({
-            'margin': '-32px 0px -48px -48px',
+            'margin-block': '-32px',
+            'margin-inline': '-48px',
             'width': 'calc(100% + 96px)',
             'height': '64px',
             'user-select': 'none',

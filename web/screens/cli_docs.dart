@@ -72,7 +72,7 @@ class CliDocs extends StatelessWidget {
             style: Style({
               'display': 'flex',
               'flex-flow': 'column',
-              'padding-left': '48px',
+              'padding-inline-start': '48px',
               'gap': '8px'
             }),
           ),

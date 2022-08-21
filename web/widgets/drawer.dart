@@ -1,5 +1,3 @@
-import 'dart:html' as html;
-
 import 'package:dawn/dawn.dart';
 
 import 'scrim.dart';
@@ -47,15 +45,16 @@ class _DrawerState extends State<Drawer> {
           ],
           style: Style({
             'background': '#0f192a',
-            'position': 'absolute',
-            'top': '0px',
+            'position': 'fixed',
+            'bottom': '0px',
             'left': '0px',
-            'height': '100vh',
+            'height': 'max-content',
+            'max-height': '50vh',
             'overflow': 'auto',
-            'width':
-                html.window.innerWidth! > 720 ? '256px' : 'calc(100vw - 120px)',
-            'transform': _isOpen ? 'translateX(0%)' : 'translateX(-100%)',
+            'width': '100vw',
+            'transform': _isOpen ? 'translateY(0%)' : 'translateY(100%)',
             'transition': 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+            'border-radius': '24px 24px 0px 0px',
           }),
         ),
       ],

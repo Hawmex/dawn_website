@@ -82,7 +82,7 @@ class Home extends StatelessWidget {
                   alternativeText: 'Example Code',
                   style: Style({
                     'width': html.window.innerWidth! > 720 ? '360px' : '100%',
-                    'border-radius': '16px',
+                    'border-radius': '24px',
                     'max-width': '100%',
                     'user-select': 'none',
                   }),

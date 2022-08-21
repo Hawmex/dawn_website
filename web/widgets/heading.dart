@@ -13,6 +13,7 @@ class Heading extends StatelessWidget {
         'font-size': '24px',
         'line-height': '36px',
         'font-variation-settings': '"wght" 600',
+        'display': 'block',
       }),
     );
   }
