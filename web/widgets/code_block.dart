@@ -23,11 +23,10 @@ class CodeBlock extends StatelessWidget {
           style: Style({
             'font-family': '"FiraCodeVF"',
             'font-variation-settings': '"wght" 500',
-            'padding': '16px 32px',
+            'padding': '32px',
             'font-size': '12px',
             'white-space': 'pre',
             'overflow': 'auto',
-            'align-self': 'center',
           }),
         ),
         Container(
@@ -50,7 +49,7 @@ class CodeBlock extends StatelessWidget {
         'flex-wrap': 'wrap',
         'background': '#0f192a',
         'color': 'white',
-        'border-radius': '32px',
+        'border-radius': '40px',
         'width': 'calc(100% + 64px)',
         'margin-inline': '-32px',
         'line-height': '20px',
