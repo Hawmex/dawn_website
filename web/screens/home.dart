@@ -84,6 +84,7 @@ class Home extends StatelessWidget {
                     'width': html.window.innerWidth! > 720 ? '360px' : '100%',
                     'border-radius': '16px',
                     'max-width': '100%',
+                    'user-select': 'none',
                   }),
                 ),
                 Text(

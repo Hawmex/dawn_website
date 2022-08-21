@@ -9,13 +9,13 @@ class Content extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       [
-        const Container(
-          [],
+        const Image(
+          '/assets/waves.svg',
           style: Style({
-            'background': 'url(/assets/waves.svg)',
             'margin': '-32px 0px -48px -48px',
             'width': 'calc(100% + 96px)',
             'height': '64px',
+            'user-select': 'none',
             'transform-origin': 'top',
           }),
         ),
