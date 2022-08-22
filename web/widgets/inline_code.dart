@@ -14,7 +14,7 @@ class InlineCode extends StatelessWidget {
         'font-size': '12px',
         'line-height': '16px',
         'background': '#0f192a',
-        'font-variation-settings': '"wght" 500',
+        'font-variation-settings': '"wght" 400',
         'color': 'white',
         'white-space': 'nowrap',
         'padding': '4px 8px',

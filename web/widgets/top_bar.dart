@@ -41,7 +41,11 @@ class TopBar extends StatelessWidget {
             if (trailing != null)
               trailing!
             else
-              Button(icon: 'arrow_back', onTap: (final event) => context.pop()),
+              Button(
+                icon: 'arrow_back',
+                solid: true,
+                onTap: (final event) => context.pop(),
+              ),
           ],
           style: const Style({'display': 'flex', 'gap': '16px'}),
         ),

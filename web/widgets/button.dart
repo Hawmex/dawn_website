@@ -44,7 +44,15 @@ class _ButtonState extends State<Button> {
         Container(
           [
             if (widget.icon != null) Icon(widget.icon!),
-            if (widget.text != null) Text(widget.text!),
+            if (widget.text != null)
+              Text(
+                widget.text!,
+                style: Style({
+                  'font-size': '14px',
+                  'font-variation-settings':
+                      widget.solid ? '"wght" 600' : '"wght" 500',
+                }),
+              ),
           ],
           style: const Style({'display': 'flex', 'gap': '8px'}),
         ),
@@ -62,9 +70,8 @@ class _ButtonState extends State<Button> {
         'user-select': 'none',
         'cursor': 'pointer',
         'border-radius': widget.text == null ? '24px' : '16px',
-        'font-size': '14px',
+        'font-variation-settings': widget.solid ? '"wght" 400' : '"wght" 300',
         'line-height': '24px',
-        'font-variation-settings': '"wght" 700',
         'height': 'max-content',
       }),
       onTap: widget.onTap,

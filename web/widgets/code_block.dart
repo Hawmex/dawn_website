@@ -22,7 +22,7 @@ class CodeBlock extends StatelessWidget {
           '',
           style: Style({
             'font-family': '"FiraCodeVF"',
-            'font-variation-settings': '"wght" 500',
+            'font-variation-settings': '"wght" 400',
             'padding': '32px',
             'font-size': '12px',
             'white-space': 'pre',

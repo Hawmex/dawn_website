@@ -24,7 +24,7 @@ class App extends StatelessWidget {
         Drawer([
           Button(
             text: 'Get Started',
-            icon: 'start',
+            icon: 'code',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const GetStarted())
               ..pop(),
@@ -32,7 +32,7 @@ class App extends StatelessWidget {
           const Divider(),
           Button(
             text: 'Features',
-            icon: 'format_list_bulleted',
+            icon: 'list',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const Features())
               ..pop(),
@@ -53,7 +53,7 @@ class App extends StatelessWidget {
           const Divider(),
           Button(
             text: 'Donate',
-            icon: 'currency_bitcoin',
+            icon: 'finance_chip',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const Donate())
               ..pop(),

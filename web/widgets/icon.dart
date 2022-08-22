@@ -27,7 +27,7 @@ class Icon extends StatelessWidget {
         fillMode: AnimationFillMode.both,
       ),
       style: const Style({
-        'font-family': 'Material Icons',
+        'font-family': '"Material Symbols Outlined"',
         'font-weight': 'normal',
         'font-style': 'normal',
         'font-size': '24px',

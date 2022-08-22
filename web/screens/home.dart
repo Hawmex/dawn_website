@@ -18,6 +18,7 @@ class Home extends StatelessWidget {
           title: 'Dawn',
           trailing: Button(
             icon: 'menu',
+            solid: true,
             onTap: (final event) => context.openDrawer(),
           ),
         ),
