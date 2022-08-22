@@ -61,7 +61,7 @@ class App extends StatelessWidget {
         ])
       ],
       style: const Style({
-        'font-family': 'JostVF',
+        'font-family': '"JostVF"',
         'font-size': '16px',
         'line-height': '24px',
         'height': '100vh',
