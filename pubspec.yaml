@@ -2,6 +2,6 @@ name: dawn_website
 description: A Dawn app
 publish_to: none
 environment:
-  sdk: ">=2.17.5 <3.0.0"
-dependencies: { dawn: ^5.3.2, js: ^0.6.4 }
+  sdk: ">=2.18.0 <3.0.0"
+dependencies: { dawn: ^5.4.1, js: ^0.6.4 }
 dev_dependencies: { dawn_lints: ^2.0.1 }
