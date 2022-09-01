@@ -14,6 +14,8 @@ const _stylingExample = '''
 
 import 'package:dawn/dawn.dart';
 
+void main() => runApp(const App());
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -36,6 +38,8 @@ const _animationSample = '''
 // Example of using `Animation`.
 
 import 'package:dawn/dawn.dart';
+
+void main() => runApp(const App());
 
 class App extends StatelessWidget {
   const App({super.key});

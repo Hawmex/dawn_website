@@ -3,6 +3,7 @@ import 'dart:html' as html;
 import 'package:dawn/dawn.dart';
 
 import 'screens/cli_docs.dart';
+import 'screens/cookbook.dart';
 import 'screens/donate.dart';
 import 'screens/features.dart';
 import 'screens/get_started.dart';
@@ -35,6 +36,13 @@ class App extends StatelessWidget {
             icon: 'list',
             onTap: (final event) => context
               ..pushRoute(builder: (final context) => const Features())
+              ..pop(),
+          ),
+          Button(
+            text: 'Cookbook',
+            icon: 'menu_book',
+            onTap: (final event) => context
+              ..pushRoute(builder: (final context) => const Cookbook())
               ..pop(),
           ),
           Button(
