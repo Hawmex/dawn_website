@@ -64,6 +64,32 @@ class Page2 extends StatelessWidget {
 }
 ''';
 
+const _lazyLoadingRoutes = '''
+import 'package:dawn/dawn.dart';
+
+import 'routes/route_one.dart' deferred as route_one;
+
+void main() => runApp(const App());
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    return Navigator(
+      child: Text(
+        'Go to route one',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: route_one.loadLibrary,
+          builder: (final context) => route_one.RouteOne(),
+          initialData: const Text('Loading...'),
+        ),
+      ),
+    );
+  }
+}
+''';
+
 const _modal = '''
 import 'package:dawn/dawn.dart';
 
@@ -192,6 +218,17 @@ class Cookbook extends StatelessWidget {
               Text(' class is provided.'),
             ]),
             CodeBlock(_routing, language: Language.dart),
+          ]),
+          Section([
+            Heading('Lazy Loading Routes'),
+            Container([
+              Text('To lazy load routes, use '),
+              InlineCode('pushRouteLazily'),
+              Text(' instead of '),
+              InlineCode('pushRoute'),
+              Text('.'),
+            ]),
+            CodeBlock(_lazyLoadingRoutes, language: Language.dart),
           ]),
           Section([
             Heading('Modals'),
