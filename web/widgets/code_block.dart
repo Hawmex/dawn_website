@@ -64,7 +64,7 @@ class CodeBlockNode extends StatelessNode {
   CodeBlockNode(super.widget);
 
   void _highlight() {
-    highlightElement(
+    highlightContainer(
       ((childNode as ContainerNode).childNodes.first as ContainerNode).element,
       code: (widget as CodeBlock).value,
       language: (widget as CodeBlock).language,

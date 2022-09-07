@@ -17,8 +17,8 @@ external dynamic _dart;
 @JS('Prism.languages.powershell')
 external dynamic _powershell;
 
-void highlightElement(
-  final html.Element element, {
+void highlightContainer(
+  final html.DivElement element, {
   required final String code,
   required final Language language,
 }) {
