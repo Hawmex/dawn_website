@@ -18,11 +18,12 @@ class CodeBlock extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       [
-        const Text(
-          '',
+        const Container(
+          [],
           style: Style({
             'font-family': '"FiraCodeVF"',
             'font-variation-settings': '"wght" 400',
+            'line-height': '20px',
             'padding': '32px',
             'font-size': '12px',
             'white-space': 'pre',
@@ -52,7 +53,6 @@ class CodeBlock extends StatelessWidget {
         'border-radius': '40px',
         'width': 'calc(100% + 64px)',
         'margin-inline': '-32px',
-        'line-height': '20px',
         'overflow': 'hidden',
         'direction': 'ltr',
       }),
@@ -65,7 +65,7 @@ class CodeBlockNode extends StatelessNode {
 
   void _highlight() {
     highlightElement(
-      ((childNode as ContainerNode).childNodes.first as TextNode).element,
+      ((childNode as ContainerNode).childNodes.first as ContainerNode).element,
       code: (widget as CodeBlock).value,
       language: (widget as CodeBlock).language,
     );

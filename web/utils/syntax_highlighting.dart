@@ -24,7 +24,7 @@ void highlightElement(
 }) {
   switch (language) {
     case Language.none:
-      element.text = code;
+      element.innerHtml = '<span>$code</span>';
       break;
     case Language.dart:
       element.innerHtml = _prismHighlight(code, _dart, 'dart');
