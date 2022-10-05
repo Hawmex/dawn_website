@@ -92,6 +92,7 @@ class App extends StatelessWidget {
                 'flex-flow': html.window.innerWidth! > 1080 ? 'row' : 'column',
                 'gap': '12px',
                 'align-items': 'center',
+                'width': '100%',
               }),
             ),
           ],
