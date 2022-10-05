@@ -1,7 +1,21 @@
-# dawn_website
+<img
+    src="https://raw.githubusercontent.com/Hawmex/dawn/main/example/web/assets/banner.svg"
+    width="100%"
+/>
 
-## 📖 Description
+---
 
-A Dawn application.
+# dawn_dev
 
-Please visit [Dawn's Website](https://dawn-dev.netlify.app) for more information.
+A Dawn App.
+
+[ [Visit Dawn's official website →](https://dawn-dev.netlify.app) ]
+
+## Serve Your App
+
+```
+webdev serve
+```
+
+[ [Read more →](https://dawn-dev.netlify.app/get-started) ]
+

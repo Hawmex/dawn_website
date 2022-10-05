@@ -4,21 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Dawn Website</title>
+    <title>Dawn's Official Website</title>
 
-    <link rel="shortcut icon" href="/assets/logo.svg" type="image/x-icon" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css"
-    />
+    <link rel="shortcut icon" href="/assets/icon.svg" type="image/x-icon" />
 
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css"
+    />
+
     <style>
+      @font-face {
+        font-family: "DanaVF";
+        src: url("/assets/dana_variable.woff2") format("woff2-variations");
+      }
+
       @font-face {
         font-family: "JostVF";
         src: url("/assets/jost_variable.woff2") format("woff2-variations");
@@ -36,6 +41,10 @@
         padding: 0px;
         -webkit-tap-highlight-color: transparent;
         box-sizing: border-box;
+      }
+
+      body {
+        font-family: "JostVF", "DanaVF";
       }
     </style>
 

@@ -1,102 +1,80 @@
 import 'package:dawn/dawn.dart';
 
 import '../utils/syntax_highlighting.dart';
-import '../widgets/code_block.dart';
+import '../widgets/button.dart';
+import '../widgets/code.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
-import '../widgets/inline_code.dart';
-import '../widgets/link.dart';
+import '../widgets/paragraph.dart';
 import '../widgets/screen.dart';
-import '../widgets/section.dart';
-import '../widgets/top_bar.dart';
+import 'features.dart' deferred as features;
+import 'install.dart' deferred as install;
 
 class GetStarted extends StatelessWidget {
   const GetStarted({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    return const Screen([
-      TopBar(title: 'Get Started'),
-      Content(
-        [
-          Section([
-            Heading('Install Dart'),
-            Container([
-              Text('There are two ways to install Dart. You can either '),
-              Link(
-                text: 'directly install it',
-                address: 'https://dart.dev/get-dart',
-              ),
-              Text(' or '),
-              Link(
-                text: 'indirectly get it',
-                address: 'https://docs.flutter.dev/get-started/install',
-              ),
-              Text(' by installing Flutter.'),
-            ]),
-          ]),
-          Section([
-            Heading('Install Dawn CLI'),
-            Text(
-              'First, we need to install Dawn CLI by globally activating Dawn.',
-            ),
-            CodeBlock(
-              'dart pub global activate dawn',
-              language: Language.powershell,
-            ),
-          ]),
-          Section([
-            Heading('Create A New Dawn App'),
-            Text(
-              'Now that we have Dawn CLI installed, we can simply run a '
-              'Dawn command to create a new app.',
-            ),
-            CodeBlock(
-              'dawn create my_awesome_app',
-              language: Language.powershell,
-            ),
-          ]),
-          Section([
-            Heading('Open The Project Directory'),
-            Text('Next, we head to the directory of our project.'),
-            CodeBlock(
-              'cd my_awesome_app',
-              language: Language.powershell,
-            ),
-          ]),
-          Section([
-            Heading('Start The Development Environment'),
-            Container([
-              Text('Now, we can edit the '),
-              InlineCode('/web'),
-              Text(
-                ' directory in our project. To see the changes, we can run a '
-                'development server using Dawn CLI.',
-              ),
-            ]),
-            CodeBlock(
-              'dawn compile -s',
-              language: Language.powershell,
-            ),
-          ]),
-          Section([
-            Heading('Compile For Production'),
-            Text(
-              'Finally, to get the production-ready output of our app, we '
-              'run the following Dawn command.',
-            ),
-            CodeBlock(
-              'dawn compile -m prod',
-              language: Language.powershell,
-            ),
-            Container([
-              Text('You can find the production output at '),
-              InlineCode('/.dawn/prod'),
-              Text(' .'),
-            ]),
-          ]),
-        ],
+    return Screen(
+      drawerActiveItemIndex: 2,
+      previous: Button.extendedNormalText(
+        icon: 'chevron_left',
+        text: 'Install',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: install.loadLibrary,
+          builder: (final context) => install.Install(),
+        ),
       ),
-    ]);
+      next: Button.extendedSecondaryFilled(
+        icon: 'chevron_right',
+        text: 'Features',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: features.loadLibrary,
+          builder: (final context) => features.Features(),
+        ),
+      ),
+      content: const Content([
+        Heading.h1(Text('Get Started')),
+        Paragraph([Text('How to set up a Dawn application?')]),
+        Heading.h2(Text('Create Your App')),
+        Paragraph([
+          Text(
+            "Dawn's CLI, provides a command that helps you create "
+            "your applications.",
+          ),
+        ]),
+        Code.block(
+          'dawn create <app_name>',
+          language: ProgrammingLanguage.powershell,
+        ),
+        Paragraph([Text("For more information about Dawn's CLI, run:")]),
+        Code.block(
+          'dawn --help',
+          language: ProgrammingLanguage.powershell,
+        ),
+        Paragraph([
+          Text('After creating your app is done, open its directory.'),
+        ]),
+        Code.block(
+          'cd <app_name>',
+          language: ProgrammingLanguage.powershell,
+        ),
+        Heading.h2(Text('Serve And Debug Your App')),
+        Paragraph([
+          Text('To serve and debug your app, use '),
+          Code.inline('webdev'),
+          Text('. You activated this package in the previous page.')
+        ]),
+        Code.block(
+          'webdev serve',
+          language: ProgrammingLanguage.powershell,
+        ),
+        Paragraph([Text("For more information about Webdev's CLI, run:")]),
+        Code.block(
+          'webdev --help',
+          language: ProgrammingLanguage.powershell,
+        ),
+      ]),
+    );
   }
 }

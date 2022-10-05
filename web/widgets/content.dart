@@ -1,5 +1,7 @@
 import 'package:dawn/dawn.dart';
 
+import 'theme.dart';
+
 class Content extends StatelessWidget {
   final List<Widget> children;
 
@@ -7,49 +9,20 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Container(
-      [
-        const Image(
-          '/assets/waves.svg',
-          style: Style({
-            'margin-block': '-32px',
-            'margin-inline': '-48px',
-            'width': 'calc(100% + 96px)',
-            'height': '64px',
-            'user-select': 'none',
-            'transform-origin': 'top',
-          }),
-        ),
-        ...children,
-      ],
-      style: const Style({
-        'display': 'flex',
-        'flex-flow': 'column',
-        'align-self': 'start',
-        'padding': '32px 48px',
-        'height': '100%',
-        'min-width': '0px',
-        'gap': '32px',
-        'background': 'white',
-        'color': 'black',
-        'width': '100%',
-      }),
-      animation: const Animation(
-        keyframes: [
-          Keyframe(
-            offset: 0,
-            style: Style({'opacity': '0', 'transform': 'translateY(64px)'}),
-          ),
-          Keyframe(
-            offset: 1,
-            style: Style({'opacity': '1', 'transform': 'translateY(0px)'}),
-          )
-        ],
-        duration: Duration(milliseconds: 300),
-        easing: Easing(0.4, 0, 0.2, 1),
-        startDelay: Duration(milliseconds: 300),
-        fillMode: AnimationFillMode.both,
-      ),
-    );
+    return ConsumerBuilder<Theme>((final context, final store) {
+      return Container(
+        children,
+        style: Style({
+          'display': 'flex',
+          'flex-flow': 'column',
+          'min-height': '100%',
+          'min-width': '0px',
+          'gap': '12px',
+          'padding': '16px',
+          'background': store.surfaceColor.toString(),
+          'color': store.onSurfaceColor.toString(),
+        }),
+      );
+    });
   }
 }

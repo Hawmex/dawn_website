@@ -1,19 +1,26 @@
 import 'package:dawn/dawn.dart';
 
 class Heading extends StatelessWidget {
-  final String value;
+  final Widget child;
+  final int level;
 
-  const Heading(this.value, {super.key});
+  const Heading.h1(this.child, {super.key}) : level = 1;
+  const Heading.h2(this.child, {super.key}) : level = 2;
+  const Heading.h3(this.child, {super.key}) : level = 3;
+  const Heading.h4(this.child, {super.key}) : level = 4;
+  const Heading.h5(this.child, {super.key}) : level = 5;
+  const Heading.h6(this.child, {super.key}) : level = 6;
 
   @override
   Widget build(final BuildContext context) {
-    return Text(
-      value,
-      style: const Style({
-        'font-size': '24px',
-        'line-height': '36px',
-        'font-variation-settings': '"wght" 500',
+    return Container(
+      [child],
+      style: Style({
+        'font-size': '${2 * (7 - level) + 16}px',
+        'line-height': '1.5',
+        'font-variation-settings': '"wght" ${40 * (7 - level) + 360}',
         'display': 'block',
+        'margin-block-start': '${2 * (7 - level) + 4}px',
       }),
     );
   }

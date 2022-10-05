@@ -1,15 +1,65 @@
 import 'package:dawn/dawn.dart';
 
 import '../utils/syntax_highlighting.dart';
-import '../widgets/code_block.dart';
+import '../widgets/button.dart';
+import '../widgets/code.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
-import '../widgets/inline_code.dart';
+import '../widgets/items_list.dart';
+import '../widgets/paragraph.dart';
 import '../widgets/screen.dart';
-import '../widgets/section.dart';
-import '../widgets/top_bar.dart';
+import 'donate.dart' deferred as donate;
+import 'features.dart' deferred as features;
 
-const _lowLevelWidget = '''
+class Cookbook extends StatelessWidget {
+  const Cookbook({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    return Screen(
+      drawerActiveItemIndex: 4,
+      previous: Button.extendedNormalText(
+        icon: 'chevron_left',
+        text: 'Features',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: features.loadLibrary,
+          builder: (final context) => features.Features(),
+        ),
+      ),
+      next: Button.extendedSecondaryFilled(
+        icon: 'chevron_right',
+        text: 'Donate',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: donate.loadLibrary,
+          builder: (final context) => donate.Donate(),
+        ),
+      ),
+      content: const Content([
+        Heading.h1(Text('Cookbook')),
+        Paragraph([
+          Text(
+            'This page contains some recommended patterns for Dawn '
+            'applications.',
+          ),
+        ]),
+        Heading.h2(
+          Text(
+            'Low-Level Widgets (Widgets With Extra Functionalities Or Unique '
+            'Behaviors)',
+          ),
+        ),
+        Paragraph([
+          Text('To create low-level widgets, you would have to create a '),
+          Code.inline('Node'),
+          Text(' subclass and construct it in '),
+          Code.inline('Widget.createNode'),
+          Text(
+            '. For example, to create a custom and simple video player widget, '
+            'you can write the following code.',
+          ),
+        ]),
+        Code.block(
+          '''
 import 'dart:html' as html;
 
 import 'package:dawn/dawn.dart';
@@ -25,17 +75,41 @@ class MyVideo extends PaintedWidget {
   MyVideoNode createNode() => MyVideoNode(this);
 }
 
-class MyVideoNode extends PaintedNode<MyVideo, html.VideoElement> {
+class MyVideoNode extends ChildlessPaintedNode<MyVideo, html.VideoElement> {
   MyVideoNode(super.widget) : super(element: html.VideoElement());
 
   @override
-  void initializeElement() => element
-    ..src = widget.source
-    ..controls = true;
-}
-''';
+  void initializeElement() {
+    super.initializeElement();
 
-const _routing = '''
+    element
+      ..src = widget.source
+      ..controls = true;
+  }
+}
+''',
+          language: ProgrammingLanguage.dart,
+        ),
+        Heading.h2(Text('Navigation')),
+        Paragraph([
+          Text('For navigation capabilities, Dawn provides the '),
+          Code.inline('Navigator'),
+          Text(' widget.'),
+        ]),
+        Heading.h3(Text('Routing')),
+        ItemsList.unordered([
+          Paragraph([
+            Text('To navigate to a new route, you can use '),
+            Code.inline('Navigation.pushRoute'),
+            Text('.')
+          ]),
+          Paragraph([
+            Text('To go back, you can call '),
+            Code.inline('Navigation.pop'),
+          ]),
+        ]),
+        Code.block(
+          '''
 import 'package:dawn/dawn.dart';
 
 void main() => runApp(const Navigator(child: Page1()));
@@ -62,9 +136,17 @@ class Page2 extends StatelessWidget {
     return Text('Page 2', onTap: (final event) => context.pop());
   }
 }
-''';
-
-const _lazyLoadingRoutes = '''
+''',
+          language: ProgrammingLanguage.dart,
+        ),
+        Heading.h3(Text('Lazy Loading Routes')),
+        Paragraph([
+          Text('To lazy load a route, you can call '),
+          Code.inline('Navigation.pushRouteLazily'),
+          Text(' instead.'),
+        ]),
+        Code.block(
+          '''
 import 'package:dawn/dawn.dart';
 
 import 'routes/route_one.dart' deferred as route_one;
@@ -82,15 +164,28 @@ class App extends StatelessWidget {
         onTap: (final event) => context.pushRouteLazily(
           loader: route_one.loadLibrary,
           builder: (final context) => route_one.RouteOne(),
-          initialData: const Text('Loading...'),
         ),
       ),
     );
   }
 }
-''';
-
-const _modal = '''
+''',
+          language: ProgrammingLanguage.dart,
+        ),
+        Heading.h3(Text('Modals')),
+        Paragraph([
+          Text(
+            "Modals are those widgets that push the state of browser's "
+            "history when opened. They are also closed when the browser's "
+            "back button is tapped or ",
+          ),
+          Code.inline('Navigation.pop'),
+          Text(' is called. Remember that '),
+          Code.inline('Navigator'),
+          Text(' should be constructed in your program.'),
+        ]),
+        Code.block(
+          '''
 import 'package:dawn/dawn.dart';
 
 void main() => runApp(const Navigator(child: App()));
@@ -129,9 +224,24 @@ class _AppState extends State<App> {
     );
   }
 }
-''';
-
-const _staticTheming = '''
+''',
+          language: ProgrammingLanguage.dart,
+        ),
+        Heading.h2(Text('Theming')),
+        Paragraph([
+          Text(
+            'Instead of using CSS variables, we recommend using the following '
+            'patterns.',
+          ),
+        ]),
+        Heading.h3(Text('Static Theming')),
+        Paragraph([
+          Text('For static theming, it is recommended to use the '),
+          Code.inline('InheritedWidget'),
+          Text(' class.'),
+        ]),
+        Code.block(
+          '''
 import 'package:dawn/dawn.dart';
 
 void main() => runApp(const Theme(child: App()));
@@ -145,7 +255,7 @@ class Theme extends InheritedWidget {
       context.dependOnInheritedWidgetOfExactType<Theme>();
 
   @override
-  bool shouldUpdateNotify(final Theme oldWidget) => false;
+  bool updateShouldNotify(final Theme oldWidget) => false;
 }
 
 class App extends StatelessWidget {
@@ -159,9 +269,24 @@ class App extends StatelessWidget {
     );
   }
 }
-''';
-
-const _dynamicTheming = '''
+''',
+          language: ProgrammingLanguage.dart,
+        ),
+        Heading.h3(Text('Dynamic Theming')),
+        Paragraph([
+          Text(
+            'For dynamic theming, it is recommended to create a store by '
+            'extending the ',
+          ),
+          Code.inline('Store'),
+          Text(' class, provide it in your root via the '),
+          Code.inline('Provider'),
+          Text(' widget, and consume its value via the '),
+          Code.inline('ConsumerBuilder'),
+          Text(' widget.'),
+        ]),
+        Code.block(
+          '''
 import 'package:dawn/dawn.dart';
 
 final _theme = Theme()..initialize();
@@ -172,7 +297,7 @@ class Theme extends Store {
   String accentColor = 'red';
 
   void toggleAccentColor() =>
-      setState(() => accentColor = accentColor == 'red' ? 'blue' : 'red'); 
+      setState(() => accentColor = accentColor == 'red' ? 'blue' : 'red');
 }
 
 class App extends StatelessWidget {
@@ -189,81 +314,10 @@ class App extends StatelessWidget {
     });
   }
 }
-''';
-
-class Cookbook extends StatelessWidget {
-  const Cookbook({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return const Screen([
-      TopBar(title: 'Cookbook'),
-      Content([
-        Section([
-          Section([
-            Heading('Low-Level Widgets'),
-            Text(
-              'To create low-level widgets, you would have to extend or '
-              'change Dawn\'s built-in widgets\' behavior. For example, to '
-              'create a custom video player widget, you can write the '
-              'following code.',
-            ),
-            CodeBlock(_lowLevelWidget, language: Language.dart),
-          ]),
-          Section([
-            Heading('Routing'),
-            Container([
-              Text('For routing and navigation, a built-in '),
-              InlineCode('Navigator'),
-              Text(' class is provided.'),
-            ]),
-            CodeBlock(_routing, language: Language.dart),
-          ]),
-          Section([
-            Heading('Lazy Loading Routes'),
-            Container([
-              Text('To lazy load routes, use '),
-              InlineCode('pushRouteLazily'),
-              Text(' instead of '),
-              InlineCode('pushRoute'),
-              Text('.'),
-            ]),
-            CodeBlock(_lazyLoadingRoutes, language: Language.dart),
-          ]),
-          Section([
-            Heading('Modals'),
-            Container([
-              Text(
-                'Modals are widgets that push the state of browser\'s history '
-                'when opened. They are also closed when the browser\'s back '
-                'button is tapped or ',
-              ),
-              InlineCode('context.pop()'),
-              Text(' is called. Remember that '),
-              InlineCode('Navigator'),
-              Text(' should be constructed in your program.')
-            ]),
-            CodeBlock(_modal, language: Language.dart),
-          ]),
-          Heading('Theming'),
-          Container([
-            Text('For static theming, you can extend an '),
-            InlineCode('InheritedWidget'),
-            Text('.'),
-          ]),
-          CodeBlock(_staticTheming, language: Language.dart),
-          Container([
-            Text('For dynamic theming, you can extend a '),
-            InlineCode('Store'),
-            Text(', provide it via a '),
-            InlineCode('Provider'),
-            Text(', and use its data via a '),
-            InlineCode('ConsumerBuilder'),
-            Text('.'),
-          ]),
-          CodeBlock(_dynamicTheming, language: Language.dart),
-        ]),
+''',
+          language: ProgrammingLanguage.dart,
+        )
       ]),
-    ]);
+    );
   }
 }

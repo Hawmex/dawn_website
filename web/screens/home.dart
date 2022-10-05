@@ -2,10 +2,13 @@ import 'dart:html' as html;
 
 import 'package:dawn/dawn.dart';
 
+import '../utils/syntax_highlighting.dart';
 import '../widgets/button.dart';
-import '../widgets/drawer.dart';
+import '../widgets/code.dart';
+import '../widgets/content.dart';
+import '../widgets/heading.dart';
 import '../widgets/screen.dart';
-import '../widgets/top_bar.dart';
+import 'install.dart' deferred as install;
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -13,137 +16,95 @@ class Home extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Screen(
-      [
-        TopBar(
-          title: 'Dawn',
-          trailing: Button(
-            icon: 'menu',
-            solid: true,
-            onTap: (final event) => context.openDrawer(),
-          ),
-        ),
+      drawerActiveItemIndex: 0,
+      content: Content([
         Container(
           [
-            const Text(
-              'Build Fast & User-Friendly Web Apps',
-              style: Style({
-                'font-size': '48px',
-                'line-height': '64px',
-                'font-variation-settings': '"wght" 700',
-                'text-align': 'center',
-              }),
-              animation: Animation(
-                keyframes: [
-                  Keyframe(
-                    offset: 0,
-                    style: Style({
-                      'opacity': '0',
-                      'transform': 'translateY(100%)',
-                    }),
-                  ),
-                  Keyframe(
-                    offset: 1,
-                    style: Style({
-                      'opacity': '1',
-                      'transform': 'translateY(0%)',
-                    }),
-                  )
-                ],
-                duration: Duration(milliseconds: 300),
-                easing: Easing(0.4, 0, 0.2, 1),
+            const Image(
+              '/assets/logo.svg',
+              style: Style({'width': '128px ', 'height': '128px'}),
+            ),
+            const Heading.h1(
+              Text(
+                'Build Fast & User-Friendly Web Apps',
+                style: Style({'text-align': 'center', 'display': 'block'}),
               ),
             ),
             Container(
               [
-                Button(
-                  text: 'Pub',
-                  icon: 'open_in_new',
-                  solid: true,
-                  onTap: (final event) => html.window.open(
-                    'https://pub.dev/packages/dawn',
-                    '',
-                  ),
-                ),
-                Button(
-                  text: 'GitHub',
-                  icon: 'open_in_new',
-                  solid: true,
-                  onTap: (final event) => html.window.open(
-                    'https://github.com/Hawmex/dawn',
-                    '',
-                  ),
-                ),
+                Container([
+                  Button.secondaryFilled(
+                    text: 'Install',
+                    icon: 'download',
+                    onTap: (final event) => context
+                      ..pushRouteLazily(
+                        loader: install.loadLibrary,
+                        builder: (final context) => install.Install(),
+                      ),
+                  )
+                ]),
+                const Container([
+                  Button.normalText(
+                    text: 'API Reference',
+                    icon: 'open_in_new',
+                    link: 'https://pub.dev/documentation/dawn',
+                  )
+                ]),
               ],
-              style: const Style({'display': 'flex', 'gap': '16px'}),
+              style: const Style({
+                'display': 'flex',
+                'flex-flow': 'row',
+                'flex-wrap': 'wrap',
+                'gap': '8px',
+                'justify-content': 'center',
+              }),
             ),
             Container(
-              [
-                Image(
-                  '/assets/code.png',
-                  alternativeText: 'Example Code',
-                  style: Style({
-                    'width': html.window.innerWidth! > 720 ? '360px' : '100%',
-                    'border-radius': '24px',
-                    'max-width': '100%',
-                    'user-select': 'none',
-                  }),
+              const [
+                Code.block(
+                  '''
+import 'package:dawn/dawn.dart';
+
+void main() => runApp(const App());
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    return const Text('Hello World!');
+  }
+}
+''',
+                  language: ProgrammingLanguage.dart,
                 ),
-                Text(
-                  'Dawn is a Dart web framework that lets developers create UIs '
-                  'with a widget model that is similar to Flutter. Dawn '
-                  'applications are compiled to JavaScript and are painted using '
-                  'HTML and CSS.',
-                  style: Style({
-                    'font-size': '24px',
-                    'line-height': '36px',
-                    'text-align':
-                        html.window.innerWidth! > 720 ? 'start' : 'center',
-                  }),
-                ),
+                Heading.h4(
+                  Text(
+                    'Dawn is a Dart web framework that lets developers create '
+                    'UIs with a widget model similar to Flutter. Dawn apps are '
+                    'compiled into JS and painted with HTML & CSS.',
+                    style: Style({'text-align': 'center', 'display': 'block'}),
+                  ),
+                )
               ],
               style: Style({
                 'display': 'flex',
-                'flex-flow': html.window.innerWidth! > 720 ? 'row' : 'column',
-                'gap': '48px',
+                'flex-flow': html.window.innerWidth! > 1080 ? 'row' : 'column',
+                'gap': '12px',
                 'align-items': 'center',
               }),
-              animation: const Animation(
-                keyframes: [
-                  Keyframe(
-                    offset: 0,
-                    style: Style({
-                      'opacity': '0',
-                      'transform': 'translateY(100%)',
-                    }),
-                  ),
-                  Keyframe(
-                    offset: 1,
-                    style: Style({
-                      'opacity': '1',
-                      'transform': 'translateY(0%)',
-                    }),
-                  )
-                ],
-                duration: Duration(milliseconds: 300),
-                easing: Easing(0.4, 0, 0.2, 1),
-                startDelay: Duration(milliseconds: 600),
-                fillMode: AnimationFillMode.both,
-              ),
             ),
           ],
           style: const Style({
             'display': 'flex',
             'flex-flow': 'column',
-            'justify-content': 'space-around',
+            'gap': '24px',
             'align-items': 'center',
-            'background': '#1d2737',
-            'min-width': '0px',
-            'padding': '48px',
-            'gap': '48px',
-            'color': 'white',
+            'justify-content': 'space-evenly',
+            'height': '100%',
           }),
         ),
-      ],
+      ]),
     );
   }
 }
