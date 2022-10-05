@@ -1,6 +1,10 @@
+import 'dart:html' as html;
+
 import 'package:dawn/dawn.dart';
 
+import 'button.dart';
 import 'scrim.dart';
+import 'theme.dart';
 
 final _drawerState = _DrawerState();
 
@@ -12,12 +16,15 @@ extension DrawerModal on BuildContext {
       onPop: () => _drawerState.setState(() => _drawerState._isOpen = false),
     );
   }
+
+  void setDrawerActiveItemIndex(final int index) =>
+      _drawerState._setActiveItemIndex(index);
 }
 
 class Drawer extends StatefulWidget {
-  final List<Widget> children;
+  final List<Button> items;
 
-  const Drawer(this.children, {super.key});
+  const Drawer(this.items, {super.key});
 
   @override
   State createState() => _drawerState;
@@ -26,39 +33,72 @@ class Drawer extends StatefulWidget {
 class _DrawerState extends State<Drawer> {
   bool _isOpen = false;
 
+  int _activeItemIndex = -1;
+
+  void _setActiveItemIndex(final int index) =>
+      setState(() => _activeItemIndex = index);
+
   @override
   Widget build(final BuildContext context) {
-    return Container(
-      [
-        Scrim(isOpen: _isOpen),
-        Container(
-          [
-            Container(
-              widget.children,
-              style: const Style({
-                'display': 'flex',
-                'flex-flow': 'column',
-                'gap': '16px',
-                'padding': '32px',
-              }),
-            ),
-          ],
-          style: Style({
-            'background': '#0f192a',
-            'position': 'fixed',
-            'bottom': '0px',
-            'left': '0px',
-            'height': 'max-content',
-            'max-height': '50vh',
-            'overflow': 'auto',
-            'width': '100vw',
-            'transform': _isOpen ? 'translateY(0%)' : 'translateY(100%)',
-            'transition': 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
-            'border-radius': '48px 48px 0px 0px',
-          }),
-        ),
-      ],
-      style: const Style({'display': 'contents'}),
-    );
+    return ConsumerBuilder<Theme>((final context, final store) {
+      final duration = store.standardDuration;
+      final curve = store.standardCurve;
+      final transition = 'transform ${duration.inMilliseconds}ms $curve';
+
+      final wrappedItems = widget.items.asMap().entries.map(
+        (final entry) {
+          final index = entry.key;
+          final item = entry.value;
+
+          return Container(
+            [
+              if (_activeItemIndex == index)
+                Button.coloredDrawer(
+                  icon: item.icon,
+                  text: item.text,
+                  onTap: (final event) {},
+                )
+              else
+                item
+            ],
+            style: const Style({'display': 'contents'}),
+          );
+        },
+      ).toList();
+
+      return Container(
+        [
+          Scrim(active: _isOpen),
+          Container(
+            [
+              Container(
+                wrappedItems,
+                style: const Style({
+                  'display': 'flex',
+                  'flex-flow': 'column',
+                  'padding': '12px',
+                  'min-height': '100%',
+                }),
+              ),
+            ],
+            style: Style({
+              'position': 'fixed',
+              'top': '0px',
+              'left': '0px',
+              'width': html.window.innerWidth! > 640
+                  ? '360px'
+                  : 'calc(100vw - 56px)',
+              'height': '100vh',
+              'background': store.surfaceColor.toString(),
+              'color': store.onSurfaceColor.toString(),
+              'transform': _isOpen ? 'translateX(0%)' : 'translateX(-100%)',
+              'transition': transition,
+              'overflow': 'auto',
+            }),
+          ),
+        ],
+        style: const Style({'display': 'contents'}),
+      );
+    });
   }
 }

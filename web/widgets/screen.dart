@@ -1,22 +1,76 @@
+import 'dart:html' as html;
+
 import 'package:dawn/dawn.dart';
 
-class Screen extends StatelessWidget {
-  final List<Widget> children;
+import 'button.dart';
+import 'content.dart';
+import 'drawer.dart';
+import 'theme.dart';
+import 'top_bar.dart';
 
-  const Screen(this.children, {super.key});
+class Screen extends StatelessWidget {
+  final Content content;
+  final Button? previous;
+  final Button? next;
+
+  final int? drawerActiveItemIndex;
+
+  const Screen({
+    required this.content,
+    this.previous,
+    this.next,
+    this.drawerActiveItemIndex,
+    super.key,
+  });
 
   @override
   Widget build(final BuildContext context) {
-    return Container(
-      children,
-      style: const Style({
-        'min-height': '100vh',
-        'display': 'grid',
-        'grid-template-rows': 'max-content 1fr',
-        'overflow': 'hidden',
-        'background': '#1d2737',
-        'color': '#1d2737',
-      }),
-    );
+    if (drawerActiveItemIndex != null) {
+      context.setDrawerActiveItemIndex(drawerActiveItemIndex!);
+    }
+
+    return ConsumerBuilder<Theme>((final context, final store) {
+      return Container(
+        [
+          TopBar(
+            title: 'Dawn',
+            trailing: [
+              Button.normalText(
+                icon: store.mode == ThemeMode.dark ? 'light_mode' : 'dark_mode',
+                onTap: (final event) => store.toggleMode(),
+              ),
+            ],
+          ),
+          content,
+          if (previous != null || next != null)
+            Container(
+              [
+                if (previous != null) previous! else const Container([]),
+                if (next != null) next! else const Container([]),
+              ],
+              style: Style({
+                'display': 'grid',
+                'grid-template-columns':
+                    html.window.innerWidth! > 640 ? '1fr 1fr' : 'unset',
+                'grid-template-rows':
+                    html.window.innerWidth! > 640 ? 'unset' : 'auto',
+                'background': store.surfaceColor.toString(),
+                'color': store.onSurfaceColor.toString(),
+                'gap': '8px',
+                'padding': '8px',
+                'margin-top': 'auto',
+                'min-width': '0px',
+              }),
+            ),
+        ],
+        style: const Style({
+          'display': 'grid',
+          'grid-template-rows': 'max-content 1fr max-content',
+          'min-height': '100vh',
+          'position': 'relative',
+          'overflow': 'hidden',
+        }),
+      );
+    });
   }
 }

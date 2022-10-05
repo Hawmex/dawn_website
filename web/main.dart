@@ -1,101 +1,172 @@
-import 'dart:html' as html;
-
 import 'package:dawn/dawn.dart';
 
-import 'screens/cli_docs.dart' deferred as cli_docs;
 import 'screens/cookbook.dart' deferred as cookbook;
 import 'screens/donate.dart' deferred as donate;
 import 'screens/features.dart' deferred as features;
 import 'screens/get_started.dart' deferred as get_started;
 import 'screens/home.dart';
+import 'screens/install.dart' deferred as install;
 import 'screens/loading.dart';
 import 'widgets/button.dart';
-import 'widgets/divider.dart';
 import 'widgets/drawer.dart';
+import 'widgets/theme.dart';
 
-void main() => runApp(const App());
+void main() {
+  runApp(
+    Provider(
+      stores: [
+        Theme()
+          ..useLightMode()
+          ..initialize()
+      ],
+      child: const App(),
+    ),
+  );
+}
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    return Container(
-      [
-        const Navigator(child: Home()),
-        Drawer([
-          Button(
-            text: 'Get Started',
-            icon: 'code',
-            onTap: (final event) => context
-              ..pushRouteLazily(
-                loader: get_started.loadLibrary,
-                builder: (final context) => get_started.GetStarted(),
-                initialData: const Loading(),
+    return ConsumerBuilder<Theme>((final context, final store) {
+      return Container(
+        [
+          Container(
+            [
+              Navigator(
+                loading: const Loading(),
+                child: const Home(),
+                pushAnimation: Animation(
+                  keyframes: const [
+                    Keyframe(
+                      offset: 0,
+                      style: Style({
+                        'opacity': '0',
+                        'transform': 'translateY(64px)',
+                      }),
+                    ),
+                    Keyframe(
+                      offset: 1,
+                      style: Style({
+                        'opacity': '1',
+                        'transform': 'translateY(0px)',
+                      }),
+                    )
+                  ],
+                  duration: store.standardDuration,
+                  easing: store.decelerationCurve,
+                  startDelay: store.standardDuration,
+                  fillMode: AnimationFillMode.both,
+                ),
+                popAnimation: Animation(
+                  keyframes: const [
+                    Keyframe(
+                      offset: 0,
+                      style: Style({
+                        'opacity': '0',
+                        'transform': 'translateY(-64px)',
+                      }),
+                    ),
+                    Keyframe(
+                      offset: 1,
+                      style: Style({
+                        'opacity': '1',
+                        'transform': 'translateY(0px)',
+                      }),
+                    )
+                  ],
+                  duration: store.standardDuration,
+                  easing: store.decelerationCurve,
+                  startDelay: store.standardDuration,
+                  fillMode: AnimationFillMode.both,
+                ),
               )
-              ..pop(),
+            ],
+            style: const Style({'overflow': 'hidden'}),
           ),
-          const Divider(),
-          Button(
-            text: 'Features',
-            icon: 'list',
-            onTap: (final event) => context
-              ..pushRouteLazily(
-                loader: features.loadLibrary,
-                builder: (final context) => features.Features(),
-                initialData: const Loading(),
-              )
-              ..pop(),
-          ),
-          Button(
-            text: 'Cookbook',
-            icon: 'menu_book',
-            onTap: (final event) => context
-              ..pushRouteLazily(
-                loader: cookbook.loadLibrary,
-                builder: (final context) => cookbook.Cookbook(),
-                initialData: const Loading(),
-              )
-              ..pop(),
-          ),
-          Button(
-            text: 'Package Docs',
-            icon: 'open_in_new',
-            onTap: (final event) =>
-                html.window.open('https://pub.dev/documentation/dawn', ''),
-          ),
-          Button(
-            text: 'CLI Docs',
-            icon: 'article',
-            onTap: (final event) => context
-              ..pushRouteLazily(
-                loader: cli_docs.loadLibrary,
-                builder: (final context) => cli_docs.CliDocs(),
-                initialData: const Loading(),
-              )
-              ..pop(),
-          ),
-          const Divider(),
-          Button(
-            text: 'Donate',
-            icon: 'finance_chip',
-            onTap: (final event) => context
-              ..pushRouteLazily(
-                loader: donate.loadLibrary,
-                builder: (final context) => donate.Donate(),
-                initialData: const Loading(),
-              )
-              ..pop(),
-          ),
-        ])
-      ],
-      style: const Style({
-        'font-family': '"JostVF"',
-        'font-size': '16px',
-        'line-height': '24px',
-        'height': '100vh',
-        'overflow': 'auto',
-      }),
-    );
+          Drawer([
+            Button.drawer(
+              text: 'Home',
+              icon: 'home',
+              onTap: (final event) => context
+                ..pushRoute(builder: (final context) => const Home())
+                ..pop(),
+            ),
+            Button.drawer(
+              text: 'Install',
+              icon: 'download',
+              onTap: (final event) => context
+                ..pushRouteLazily(
+                  loader: install.loadLibrary,
+                  builder: (final context) => install.Install(),
+                )
+                ..pop(),
+            ),
+            Button.drawer(
+              text: 'Get Started',
+              icon: 'start',
+              onTap: (final event) => context
+                ..pushRouteLazily(
+                  loader: get_started.loadLibrary,
+                  builder: (final context) => get_started.GetStarted(),
+                )
+                ..pop(),
+            ),
+            Button.drawer(
+              text: 'Features',
+              icon: 'list',
+              onTap: (final event) => context
+                ..pushRouteLazily(
+                  loader: features.loadLibrary,
+                  builder: (final context) => features.Features(),
+                )
+                ..pop(),
+            ),
+            Button.drawer(
+              text: 'Cookbook',
+              icon: 'book',
+              onTap: (final event) => context
+                ..pushRouteLazily(
+                  loader: cookbook.loadLibrary,
+                  builder: (final context) => cookbook.Cookbook(),
+                )
+                ..pop(),
+            ),
+            Button.drawer(
+              text: 'Donate',
+              icon: 'monetization_on',
+              onTap: (final event) => context
+                ..pushRouteLazily(
+                  loader: donate.loadLibrary,
+                  builder: (final context) => donate.Donate(),
+                )
+                ..pop(),
+            ),
+            const Button.drawer(
+              icon: 'open_in_new',
+              text: 'Pub',
+              link: 'https://pub.dev/packages/dawn',
+            ),
+            const Button.drawer(
+              icon: 'open_in_new',
+              text: 'GitHub',
+              link: 'https://github.com/Hawmex/dawn',
+            ),
+            const Button.drawer(
+              text: 'Contribute To This Website',
+              icon: 'open_in_new',
+              link: 'https://github.com/Hawmex/dawn_website',
+            )
+          ]),
+        ],
+        style: Style({
+          'background': store.backgroundColor.toString(),
+          'color': store.onBackgroundColor.toString(),
+          'height': '100vh',
+          'overflow': 'auto',
+        }),
+      );
+    });
   }
 }

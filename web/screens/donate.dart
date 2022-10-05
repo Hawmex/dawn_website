@@ -1,39 +1,40 @@
 import 'package:dawn/dawn.dart';
 
-import '../widgets/code_block.dart';
+import '../widgets/button.dart';
+import '../widgets/code.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
-import '../widgets/inline_code.dart';
+import '../widgets/paragraph.dart';
 import '../widgets/screen.dart';
-import '../widgets/section.dart';
-import '../widgets/top_bar.dart';
+import 'cookbook.dart' deferred as cookbook;
 
 class Donate extends StatelessWidget {
   const Donate({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    return const Screen([
-      TopBar(title: 'Donate'),
-      Content([
-        Section([Heading('Support Me In Developing Dawn')]),
-        Section([
-          Container([InlineCode('BTC'), Text(' address:')]),
-          CodeBlock('bc1qsrzrs5ajewzgq6vk2ruhu8l774udspnpdqd8w2'),
-        ]),
-        Section([
-          Container([InlineCode('ETH'), Text(' address:')]),
-          CodeBlock('0x421B7049B17D3a85Ed7501D9FBd2eb3bEFA7b39e'),
-        ]),
-        Section([
-          Container([InlineCode('USDT (TRC20)'), Text(' address:')]),
-          CodeBlock('TEdM59aYLxpZhXd26Smeg7TccPouzcoZ13'),
-        ]),
-        Section([
-          Container([InlineCode('USDT (ERC20)'), Text(' address:')]),
-          CodeBlock('0x421B7049B17D3a85Ed7501D9FBd2eb3bEFA7b39e'),
-        ]),
+    return Screen(
+      drawerActiveItemIndex: 5,
+      previous: Button.extendedNormalText(
+        icon: 'chevron_left',
+        text: 'Cookbook',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: cookbook.loadLibrary,
+          builder: (final context) => cookbook.Cookbook(),
+        ),
+      ),
+      content: const Content([
+        Heading.h1(Text('Donate')),
+        Paragraph([Text('You can donate to support me in developing Dawn.')]),
+        Heading.h6(Code.inline('BTC')),
+        Code.block('bc1qsrzrs5ajewzgq6vk2ruhu8l774udspnpdqd8w2'),
+        Heading.h6(Code.inline('ETH')),
+        Code.block('0x421B7049B17D3a85Ed7501D9FBd2eb3bEFA7b39e'),
+        Heading.h6(Code.inline('USDT (TRC20)')),
+        Code.block('TEdM59aYLxpZhXd26Smeg7TccPouzcoZ13'),
+        Heading.h6(Code.inline('USDT (ERC20)')),
+        Code.block('0x421B7049B17D3a85Ed7501D9FBd2eb3bEFA7b39e'),
       ]),
-    ]);
+    );
   }
 }

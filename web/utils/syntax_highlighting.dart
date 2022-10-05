@@ -2,10 +2,10 @@ import 'dart:html' as html;
 
 import 'package:js/js.dart';
 
-enum Language { none, dart, powershell }
+enum ProgrammingLanguage { none, dart, powershell }
 
 @JS('Prism.highlight')
-external dynamic _prismHighlight(
+external String _prismHighlight(
   final String code,
   final dynamic grammar,
   final String language,
@@ -20,16 +20,16 @@ external dynamic _powershell;
 void highlightContainer(
   final html.DivElement element, {
   required final String code,
-  required final Language language,
+  required final ProgrammingLanguage language,
 }) {
   switch (language) {
-    case Language.none:
+    case ProgrammingLanguage.none:
       element.append(html.SpanElement()..text = code);
       break;
-    case Language.dart:
+    case ProgrammingLanguage.dart:
       element.innerHtml = _prismHighlight(code, _dart, 'dart');
       break;
-    case Language.powershell:
+    case ProgrammingLanguage.powershell:
       element.innerHtml = _prismHighlight(code, _powershell, 'powershell');
       break;
   }

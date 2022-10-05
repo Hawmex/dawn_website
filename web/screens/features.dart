@@ -1,17 +1,96 @@
 import 'package:dawn/dawn.dart';
 
 import '../utils/syntax_highlighting.dart';
-import '../widgets/code_block.dart';
+import '../widgets/button.dart';
+import '../widgets/code.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
-import '../widgets/inline_code.dart';
+import '../widgets/items_list.dart';
+import '../widgets/link.dart';
+import '../widgets/paragraph.dart';
 import '../widgets/screen.dart';
-import '../widgets/section.dart';
-import '../widgets/top_bar.dart';
+import 'cookbook.dart' deferred as cookbook;
+import 'get_started.dart' deferred as get_started;
 
-const _stylingExample = '''
-// Example of using `Style`.
+class Features extends StatelessWidget {
+  const Features({super.key});
 
+  @override
+  Widget build(final BuildContext context) {
+    return Screen(
+      drawerActiveItemIndex: 3,
+      previous: Button.extendedNormalText(
+        icon: 'chevron_left',
+        text: 'Get Started',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: get_started.loadLibrary,
+          builder: (final context) => get_started.GetStarted(),
+        ),
+      ),
+      next: Button.extendedSecondaryFilled(
+        icon: 'chevron_right',
+        text: 'Cookbook',
+        onTap: (final event) => context.pushRouteLazily(
+          loader: cookbook.loadLibrary,
+          builder: (final context) => cookbook.Cookbook(),
+        ),
+      ),
+      content: const Content([
+        Heading.h1(Text('Features')),
+        Paragraph([Text('What are the main features of Dawn?')]),
+        Heading.h2(Text('JavaScript Interop')),
+        Paragraph([
+          Text('You can use '),
+          Link(
+            children: [Code.inline('js'), Text(' package')],
+            address: 'https://pub.dev/packages/js',
+          ),
+          Text(
+            ' to add JavaScript interoperability to your apps. For example '
+            'this website is built with Dawn while PrismJS is used for syntax '
+            'highlighting code samples.',
+          ),
+        ]),
+        Heading.h2(Text('CLI')),
+        Paragraph([
+          Text(
+            'As it is mentioned in the previous pages, Dawn provides a CLI to '
+            'create your applications.',
+          )
+        ]),
+        Heading.h2(Text('Essential And Unstyled Widgets')),
+        Paragraph([
+          Text(
+            "Dawn provides the essential and unstyled widgets that a minimal "
+            "project needs. You can create more complex widgets by combining and "
+            "styling the essential ones. If you need to implement extra "
+            "functionalities and unique behaviors, you can use Dawn's "
+            "extensibility feature. We'll get to that later on this page.",
+          ),
+        ]),
+        ItemsList.unordered([
+          Code.inline('InheritedWidget'),
+          Code.inline('StatelessWidget'),
+          Code.inline('StatelessBuilder'),
+          Code.inline('StatefulWidget'),
+          Code.inline('StatefulBuilder'),
+          Code.inline('FutureBuilder'),
+          Code.inline('StreamBuilder'),
+          Code.inline('ConsumerBuilder'),
+          Code.inline('Provider'),
+          Code.inline('Navigator'),
+          Code.inline('Text'),
+          Code.inline('Image'),
+          Code.inline('Container'),
+        ]),
+        Heading.h2(Text('Styles')),
+        Paragraph([
+          Text('Dawn provides CSS styling via the '),
+          Code.inline('Style'),
+          Text(' constructor.')
+        ]),
+        Code.block(
+          '''
 import 'package:dawn/dawn.dart';
 
 void main() => runApp(const App());
@@ -32,11 +111,20 @@ class App extends StatelessWidget {
     );
   }
 }
-''';
-
-const _animationSample = '''
-// Example of using `Animation`.
-
+''',
+          language: ProgrammingLanguage.dart,
+        ),
+        Heading.h2(Text('Animations')),
+        Paragraph([
+          Text('Dawn has a built-in '),
+          Code.inline('Animation'),
+          Text(
+            ' constructor that is implemented similar to CSS and JavaScript '
+            'animations.',
+          ),
+        ]),
+        Code.block(
+          '''
 import 'package:dawn/dawn.dart';
 
 void main() => runApp(const App());
@@ -64,18 +152,29 @@ class App extends StatelessWidget {
     );
   }
 }
-''';
-
-const _extensibilityExample = '''
-// Example of creating a custom low-level widget.
-
+''',
+          language: ProgrammingLanguage.dart,
+        ),
+        Heading.h2(Text('Extensibility')),
+        Paragraph([
+          Text(
+            'If you need to implement extra functionalities and unique behaviors '
+            'for your widgets, you can create your custom ',
+          ),
+          Code.inline('Nodes'),
+          Text(' and attach it to your widget by overriding the '),
+          Code.inline('Widget.createNode'),
+          Text(' method.'),
+        ]),
+        Code.block(
+          '''
 import 'dart:html' as html;
 
 import 'package:dawn/dawn.dart';
 
 class MyInput extends PaintedWidget {
   final String value;
-  final EventListener? onChange;
+  final EventSubscriptionCallback? onChange;
 
   const MyInput(this.value, {this.onChange, super.key});
 
@@ -83,117 +182,20 @@ class MyInput extends PaintedWidget {
   MyInputNode createNode() => MyInputNode(this);
 }
 
-class MyInputNode extends PaintedNode<MyInput, html.TextInputElement> {
+class MyInputNode extends ChildlessPaintedNode<MyInput, html.TextInputElement> {
   MyInputNode(super.widget) : super(element: html.TextInputElement());
 
   @override
   void initializeElement() {
     super.initializeElement();
-
-    element
-      ..addEventListener('change', widget.onChange)
-      ..value = widget.value;
-  }
-
-  @override
-  void disposeElement() {
-    element.removeEventListener('change', widget.onChange);
-    super.disposeElement();
+    addEventSubscription('change', widget.onChange);
+    element.value = widget.value;
   }
 }
-''';
-
-class Features extends StatelessWidget {
-  const Features({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return const Screen([
-      TopBar(title: 'Features'),
-      Content([
-        Section([
-          Heading('First Of All, Why Dawn Exists'),
-          Container([
-            Text(
-              'Flutter is great, especially its syntax and its concepts '
-              'such as ',
-            ),
-            InlineCode('BuildContext'),
-            Text(', '),
-            InlineCode('StatelessWidget'),
-            Text(', '),
-            InlineCode('StatefulWidget'),
-            Text(', '),
-            InlineCode('State'),
-            Text(
-              ', etc. But it\'s considerably harder in terms of styling '
-              'and development pace compared to HTML and CSS. So, Dawn is '
-              'created to provide HTML rendering via Flutter semantics and '
-              'styling it using CSS.',
-            ),
-          ]),
-        ]),
-        Section([
-          Heading('JavaScript Interoperability'),
-          Container([
-            Text(
-              'This website is made with Dawn itself. However, code '
-              'snippets use ',
-            ),
-            InlineCode('Prism.js'),
-            Text(' for syntax highlighting.'),
-          ]),
-        ]),
-        Section([
-          Heading('CLI'),
-          Text(
-            'Dawn comes with a CLI to help you create and compile your '
-            'applications.',
-          )
-        ]),
-        Section([
-          Heading('Basic, Yet Useful Widgets'),
-          Text('Dawn provides your favorite widgets and builders.'),
-          InlineCode('InheritedWidget'),
-          InlineCode('StatelessWidget'),
-          InlineCode('StatefulWidget'),
-          InlineCode('StatelessBuilder'),
-          InlineCode('StatefulBuilder'),
-          InlineCode('FutureBuilder'),
-          InlineCode('StreamBuilder'),
-          InlineCode('ConsumerBuilder'),
-          InlineCode('Text'),
-          InlineCode('Image'),
-          InlineCode('Container'),
-          InlineCode('Navigator'),
-          InlineCode('Provider'),
-        ]),
-        Section([
-          Heading('Styles'),
-          Container([
-            Text('Dawn uses CSS styling via '),
-            InlineCode('Map<String, String>'),
-            Text('.'),
-          ]),
-          CodeBlock(_stylingExample, language: Language.dart),
-        ]),
-        Section([
-          Heading('Animations'),
-          Text(
-            'Dawn has a built-in animation system that comes with '
-            'multiple parameters.',
-          ),
-          CodeBlock(_animationSample, language: Language.dart),
-        ]),
-        Section([
-          Heading('Extensibility'),
-          Text(
-            'Dawn gives its users the ability to extend the '
-            'framework and create their own low-level widgets.',
-          ),
-          CodeBlock(_extensibilityExample, language: Language.dart),
-        ]),
+''',
+          language: ProgrammingLanguage.dart,
+        )
       ]),
-    ]);
+    );
   }
 }
