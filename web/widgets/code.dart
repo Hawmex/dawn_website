@@ -40,7 +40,7 @@ class Code extends StatelessWidget {
               'white-space': 'nowrap',
               'padding': '4px 8px',
               'width': 'max-content',
-              'border-radius': '12px',
+              'border-radius': '10000px',
               'direction': 'ltr',
               'display': 'inline-block',
             }),
@@ -54,7 +54,7 @@ class Code extends StatelessWidget {
               style: Style({
                 'font-family': '"FiraCodeVF"',
                 'line-height': '20px',
-                'padding': '28px 16px',
+                'padding': '18px 16px',
                 'font-size': '12px',
                 'white-space': 'pre',
                 'overflow': 'auto',
@@ -70,7 +70,7 @@ class Code extends StatelessWidget {
               ],
               style: const Style({
                 'margin-inline-start': 'auto',
-                'padding': '16px',
+                'padding': '8px',
               }),
             ),
           ],
