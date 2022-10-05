@@ -8,6 +8,7 @@ import '../widgets/code.dart';
 import '../widgets/content.dart';
 import '../widgets/heading.dart';
 import '../widgets/screen.dart';
+import '../widgets/theme.dart';
 import 'install.dart' deferred as install;
 
 class Home extends StatelessWidget {
@@ -15,54 +16,100 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Screen(
-      drawerActiveItemIndex: 0,
-      content: Content([
-        Container(
-          [
-            const Image(
-              '/assets/logo.svg',
-              style: Style({'width': '128px ', 'height': '128px'}),
-            ),
-            const Heading.h1(
-              Text(
-                'Build Fast & User-Friendly Web Apps',
-                style: Style({'text-align': 'center', 'display': 'block'}),
+    return ConsumerBuilder<Theme>((final context, final store) {
+      return Screen(
+        drawerActiveItemIndex: 0,
+        content: Content([
+          Container(
+            [
+              Image(
+                '/assets/logo.svg',
+                style: const Style({'width': '128px ', 'height': '128px'}),
+                animation: Animation(
+                  keyframes: const [
+                    Keyframe(
+                      offset: 0,
+                      style: Style({
+                        'transform': 'translateY(56px)',
+                        'opacity': '0',
+                      }),
+                    ),
+                    Keyframe(
+                      offset: 1,
+                      style: Style({
+                        'transform': 'translateY(0px)',
+                        'opacity': '1',
+                      }),
+                    ),
+                  ],
+                  duration: store.standardDuration,
+                  startDelay: store.shortDuration,
+                  fillMode: AnimationFillMode.both,
+                  easing: store.decelerationCurve,
+                ),
               ),
-            ),
-            Container(
-              [
-                Container([
-                  Button.secondaryFilled(
-                    text: 'Install',
-                    icon: 'download',
-                    onTap: (final event) => context
-                      ..pushRouteLazily(
-                        loader: install.loadLibrary,
-                        builder: (final context) => install.Install(),
+              Heading.h1(
+                Text(
+                  'Build Fast & User-Friendly Web Apps',
+                  style:
+                      const Style({'text-align': 'center', 'display': 'block'}),
+                  animation: Animation(
+                    keyframes: const [
+                      Keyframe(
+                        offset: 0,
+                        style: Style({
+                          'transform': 'translateY(56px)',
+                          'opacity': '0',
+                        }),
                       ),
-                  )
-                ]),
-                const Container([
-                  Button.normalText(
-                    text: 'API Reference',
-                    icon: 'open_in_new',
-                    link: 'https://pub.dev/documentation/dawn',
-                  )
-                ]),
-              ],
-              style: const Style({
-                'display': 'flex',
-                'flex-flow': 'row',
-                'flex-wrap': 'wrap',
-                'gap': '8px',
-                'justify-content': 'center',
-              }),
-            ),
-            Container(
-              const [
-                Code.block(
-                  '''
+                      Keyframe(
+                        offset: 1,
+                        style: Style({
+                          'transform': 'translateY(0px)',
+                          'opacity': '1',
+                        }),
+                      ),
+                    ],
+                    duration: store.standardDuration,
+                    startDelay: store.standardDuration,
+                    fillMode: AnimationFillMode.both,
+                    easing: store.decelerationCurve,
+                  ),
+                ),
+              ),
+              Container(
+                [
+                  Container([
+                    Button.secondaryFilled(
+                      text: 'Install',
+                      icon: 'download',
+                      onTap: (final event) => context
+                        ..pushRouteLazily(
+                          loader: install.loadLibrary,
+                          builder: (final context) => install.Install(),
+                        ),
+                    )
+                  ]),
+                  const Container([
+                    Button.normalText(
+                      text: 'API Reference',
+                      icon: 'open_in_new',
+                      link: 'https://pub.dev/documentation/dawn',
+                    )
+                  ]),
+                ],
+                style: const Style({
+                  'display': 'flex',
+                  'flex-flow': 'row',
+                  'flex-wrap': 'wrap',
+                  'gap': '8px',
+                  'justify-content': 'center',
+                }),
+              ),
+              Container(
+                const [
+                  Code.block(
+                    '''
 import 'package:dawn/dawn.dart';
 
 void main() => runApp(const App());
@@ -76,36 +123,61 @@ class App extends StatelessWidget {
   }
 }
 ''',
-                  language: ProgrammingLanguage.dart,
-                ),
-                Heading.h4(
-                  Text(
-                    'Dawn is a Dart web framework that lets developers create '
-                    'UIs with a widget model similar to Flutter. Dawn apps are '
-                    'compiled into JS and painted with HTML & CSS.',
-                    style: Style({'text-align': 'center', 'display': 'block'}),
+                    language: ProgrammingLanguage.dart,
                   ),
-                )
-              ],
-              style: Style({
-                'display': 'flex',
-                'flex-flow': html.window.innerWidth! > 1080 ? 'row' : 'column',
-                'gap': '12px',
-                'align-items': 'center',
-                'width': '100%',
-              }),
-            ),
-          ],
-          style: const Style({
-            'display': 'flex',
-            'flex-flow': 'column',
-            'gap': '24px',
-            'align-items': 'center',
-            'justify-content': 'space-evenly',
-            'height': '100%',
-          }),
-        ),
-      ]),
-    );
+                  Heading.h4(
+                    Text(
+                      'Dawn is a Dart web framework that lets developers create '
+                      'UIs with a widget model similar to Flutter. Dawn apps are '
+                      'compiled into JS and painted with HTML & CSS.',
+                      style:
+                          Style({'text-align': 'center', 'display': 'block'}),
+                    ),
+                  )
+                ],
+                style: Style({
+                  'display': 'flex',
+                  'flex-flow':
+                      html.window.innerWidth! > 1080 ? 'row' : 'column',
+                  'gap': '12px',
+                  'align-items': 'center',
+                  'width': '100%',
+                }),
+                animation: Animation(
+                  keyframes: const [
+                    Keyframe(
+                      offset: 0,
+                      style: Style({
+                        'transform': 'translateY(56px)',
+                        'opacity': '0',
+                      }),
+                    ),
+                    Keyframe(
+                      offset: 1,
+                      style: Style({
+                        'transform': 'translateY(0px)',
+                        'opacity': '1',
+                      }),
+                    ),
+                  ],
+                  duration: store.standardDuration,
+                  startDelay: store.longDuration,
+                  fillMode: AnimationFillMode.both,
+                  easing: store.decelerationCurve,
+                ),
+              ),
+            ],
+            style: const Style({
+              'display': 'flex',
+              'flex-flow': 'column',
+              'gap': '24px',
+              'align-items': 'center',
+              'justify-content': 'space-evenly',
+              'height': '100%',
+            }),
+          ),
+        ]),
+      );
+    });
   }
 }
