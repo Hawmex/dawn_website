@@ -34,6 +34,9 @@ class TopBar extends StatelessWidget {
               'font-size': '24px',
               'font-variation-settings': '"wght" 480',
               'user-select': 'none',
+              'overflow': 'hidden',
+              'white-space': 'nowrap',
+              'text-overflow': 'ellipsis',
             }),
           ),
           Container(
@@ -42,7 +45,6 @@ class TopBar extends StatelessWidget {
               'display': 'flex',
               'flex-flow': 'row',
               'gap': '8px',
-              'overflow': 'auto',
             }),
           )
         ],
