@@ -18,14 +18,17 @@ class TopBar extends StatelessWidget {
         [
           Container(
             [
-              if (leading != null)
-                leading!
-              else
-                Button.normalText(
-                  icon: 'menu',
-                  onTap: (final event) => context.openDrawer(),
-                ),
+              Container([
+                if (leading != null)
+                  leading!
+                else
+                  Button.normalText(
+                    icon: 'menu',
+                    onTap: (final event) => context.openDrawer(),
+                  ),
+              ])
             ],
+            style: const Style({'display': 'flex'}),
           ),
           Text(
             title,
@@ -40,19 +43,23 @@ class TopBar extends StatelessWidget {
             }),
           ),
           Container(
-            [if (trailing != null) ...?trailing],
+            [
+              if (trailing != null)
+                for (final singleTrailing in trailing!)
+                  Container([singleTrailing])
+            ],
             style: const Style({
               'display': 'flex',
               'flex-flow': 'row',
               'gap': '8px',
+              'justify-content': 'end',
             }),
           )
         ],
         style: Style({
-          'display': 'flex',
+          'display': 'grid',
           'min-width': '0px',
-          'flex-flow': 'row',
-          'justify-content': 'space-between',
+          'grid-template-columns': '1fr max-content 1fr',
           'gap': '16px',
           'padding': '8px',
           'background': store.surfaceColor.toString(),
