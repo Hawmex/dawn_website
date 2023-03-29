@@ -9,7 +9,7 @@ import '../widgets/screen.dart';
 import 'cookbook.dart' deferred as cookbook;
 
 class Donate extends StatelessWidget {
-  const Donate({super.key});
+  const Donate({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -18,7 +18,7 @@ class Donate extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Cookbook',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: cookbook.loadLibrary,
           builder: (final context) => cookbook.Cookbook(),
         ),

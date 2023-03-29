@@ -9,7 +9,13 @@ class TopBar extends StatelessWidget {
   final String title;
   final List<Button>? trailing;
 
-  const TopBar({this.leading, required this.title, this.trailing, super.key});
+  const TopBar({
+    this.leading,
+    required this.title,
+    this.trailing,
+    super.key,
+    super.ref,
+  });
 
   @override
   Widget build(final BuildContext context) {
@@ -24,7 +30,7 @@ class TopBar extends StatelessWidget {
                 else
                   Button.normalText(
                     icon: 'menu',
-                    onTap: (final event) => context.openDrawer(),
+                    onTap: (final details) => context.openDrawer(),
                   ),
               ])
             ],

@@ -6,10 +6,10 @@ class ItemsList extends StatelessWidget {
   final List<Widget> items;
   final ItemsListVariant variant;
 
-  const ItemsList.ordered(this.items, {super.key})
+  const ItemsList.ordered(this.items, {super.key, super.ref})
       : variant = ItemsListVariant.ordered;
 
-  const ItemsList.unordered(this.items, {super.key})
+  const ItemsList.unordered(this.items, {super.key, super.ref})
       : variant = ItemsListVariant.unordered;
 
   String get _listStyleType {

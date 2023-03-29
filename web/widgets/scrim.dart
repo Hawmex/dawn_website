@@ -5,7 +5,7 @@ import 'theme.dart';
 class Scrim extends StatelessWidget {
   final bool active;
 
-  const Scrim({required this.active, super.key});
+  const Scrim({required this.active, super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -20,7 +20,7 @@ class Scrim extends StatelessWidget {
 
       return Container(
         [],
-        onPointerDown: (final event) => context.pop(),
+        onPointerDown: (final details) => context.pop(),
         style: Style({
           'position': 'fixed',
           'top': '0px',

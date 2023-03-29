@@ -12,7 +12,7 @@ import '../widgets/theme.dart';
 import 'install.dart' deferred as install;
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  const Home({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -83,7 +83,7 @@ class Home extends StatelessWidget {
                     Button.secondaryFilled(
                       text: 'Install',
                       icon: 'download',
-                      onTap: (final event) => context
+                      onTap: (final details) => context
                         ..pushRouteLazily(
                           loader: install.loadLibrary,
                           builder: (final context) => install.Install(),
@@ -115,7 +115,7 @@ import 'package:dawn/dawn.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {

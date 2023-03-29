@@ -5,7 +5,7 @@ import '../widgets/screen.dart';
 import '../widgets/theme.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({super.key});
+  const Loading({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {

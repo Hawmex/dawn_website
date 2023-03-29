@@ -22,18 +22,8 @@ class Link extends PaintedWidget {
     super.onPointerCancel,
     super.onPointerOver,
     super.onPointerOut,
-    super.onMouseDown,
-    super.onMouseUp,
-    super.onMouseEnter,
-    super.onMouseLeave,
-    super.onMouseMove,
-    super.onMouseOver,
-    super.onMouseOut,
-    super.onTouchStart,
-    super.onTouchEnd,
-    super.onTouchMove,
-    super.onTouchCancel,
     super.key,
+    super.ref,
   });
 
   @override

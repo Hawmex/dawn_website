@@ -12,7 +12,7 @@ import 'donate.dart' deferred as donate;
 import 'features.dart' deferred as features;
 
 class Cookbook extends StatelessWidget {
-  const Cookbook({super.key});
+  const Cookbook({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -21,7 +21,7 @@ class Cookbook extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Features',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: features.loadLibrary,
           builder: (final context) => features.Features(),
         ),
@@ -29,7 +29,7 @@ class Cookbook extends StatelessWidget {
       next: Button.extendedSecondaryFilled(
         icon: 'chevron_right',
         text: 'Donate',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: donate.loadLibrary,
           builder: (final context) => donate.Donate(),
         ),
@@ -69,7 +69,7 @@ void main() => runApp(const MyVideo('/assets/video.mp4'));
 class MyVideo extends PaintedWidget {
   final String source;
 
-  const MyVideo(this.source, {super.key});
+  const MyVideo(this.source, {super.key, super.ref});
 
   @override
   MyVideoNode createNode() => MyVideoNode(this);
@@ -115,13 +115,13 @@ import 'package:dawn/dawn.dart';
 void main() => runApp(const Navigator(child: Page1()));
 
 class Page1 extends StatelessWidget {
-  const Page1({super.key});
+  const Page1({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
     return Text(
       'Page 1',
-      onTap: (final event) => context.pushRoute(
+      onTap: (final details) => context.pushRoute(
         builder: (final context) => const Page2(),
       ),
     );
@@ -129,11 +129,11 @@ class Page1 extends StatelessWidget {
 }
 
 class Page2 extends StatelessWidget {
-  const Page2({super.key});
+  const Page2({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
-    return Text('Page 2', onTap: (final event) => context.pop());
+    return Text('Page 2', onTap: (final details) => context.pop());
   }
 }
 ''',
@@ -154,14 +154,14 @@ import 'routes/route_one.dart' deferred as route_one;
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
     return Navigator(
       child: Text(
         'Go to route one',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: route_one.loadLibrary,
           builder: (final context) => route_one.RouteOne(),
         ),
@@ -191,7 +191,7 @@ import 'package:dawn/dawn.dart';
 void main() => runApp(const Navigator(child: App()));
 
 class App extends StatefulWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   State createState() => _AppState();
@@ -206,7 +206,7 @@ class _AppState extends State<App> {
       [
         Text(
           _isModalShown ? 'Close modal' : 'Open modal',
-          onTap: (final event) {
+          onTap: (final details) {
             if (_isModalShown) {
               context.pop();
             } else {
@@ -249,17 +249,17 @@ void main() => runApp(const Theme(child: App()));
 class Theme extends InheritedWidget {
   final String accentColor = 'red';
 
-  const Theme({required super.child, super.key});
+  const Theme({required super.child, super.key, super.ref});
 
   static Theme of(final BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<Theme>();
 
   @override
-  bool updateShouldNotify(final Theme oldWidget) => false;
+  bool updateShouldNotify(final Theme oldWidget) => true;
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -301,15 +301,15 @@ class Theme extends Store {
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
-    return ConsumerBuilder<Theme>((final context, final store) {
+    return ConsumerBuilder<Theme>((final context, final theme) {
       return Text(
         'Hello World!',
-        style: Style({'color': store.accentColor}),
-        onTap: (final event) => store.toggleAccentColor(),
+        style: Style({'color': theme.accentColor}),
+        onTap: (final details) => theme.toggleAccentColor(),
       );
     });
   }

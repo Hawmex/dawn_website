@@ -25,7 +25,7 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
           Container(
             [
               Navigator(
-                loading: const Loading(),
+                fallback: const Loading(),
                 child: const Home(),
                 pushAnimation: Animation(
                   keyframes: const [
@@ -89,14 +89,14 @@ class App extends StatelessWidget {
             Button.drawer(
               text: 'Home',
               icon: 'home',
-              onTap: (final event) => context
+              onTap: (final details) => context
                 ..pushRoute(builder: (final context) => const Home())
                 ..pop(),
             ),
             Button.drawer(
               text: 'Install',
               icon: 'download',
-              onTap: (final event) => context
+              onTap: (final details) => context
                 ..pushRouteLazily(
                   loader: install.loadLibrary,
                   builder: (final context) => install.Install(),
@@ -106,7 +106,7 @@ class App extends StatelessWidget {
             Button.drawer(
               text: 'Get Started',
               icon: 'start',
-              onTap: (final event) => context
+              onTap: (final details) => context
                 ..pushRouteLazily(
                   loader: get_started.loadLibrary,
                   builder: (final context) => get_started.GetStarted(),
@@ -116,7 +116,7 @@ class App extends StatelessWidget {
             Button.drawer(
               text: 'Features',
               icon: 'list',
-              onTap: (final event) => context
+              onTap: (final details) => context
                 ..pushRouteLazily(
                   loader: features.loadLibrary,
                   builder: (final context) => features.Features(),
@@ -126,7 +126,7 @@ class App extends StatelessWidget {
             Button.drawer(
               text: 'Cookbook',
               icon: 'book',
-              onTap: (final event) => context
+              onTap: (final details) => context
                 ..pushRouteLazily(
                   loader: cookbook.loadLibrary,
                   builder: (final context) => cookbook.Cookbook(),
@@ -136,7 +136,7 @@ class App extends StatelessWidget {
             Button.drawer(
               text: 'Donate',
               icon: 'monetization_on',
-              onTap: (final event) => context
+              onTap: (final details) => context
                 ..pushRouteLazily(
                   loader: donate.loadLibrary,
                   builder: (final context) => donate.Donate(),

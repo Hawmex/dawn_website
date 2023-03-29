@@ -5,7 +5,7 @@ import 'theme.dart';
 class Content extends StatelessWidget {
   final List<Widget> children;
 
-  const Content(this.children, {super.key});
+  const Content(this.children, {super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {

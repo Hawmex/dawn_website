@@ -21,6 +21,7 @@ class Screen extends StatelessWidget {
     this.next,
     this.drawerActiveItemIndex,
     super.key,
+    super.ref,
   });
 
   @override
@@ -37,7 +38,7 @@ class Screen extends StatelessWidget {
             trailing: [
               Button.normalText(
                 icon: store.mode == ThemeMode.dark ? 'light_mode' : 'dark_mode',
-                onTap: (final event) => store.toggleMode(),
+                onTap: (final details) => store.toggleMode(),
               ),
             ],
           ),

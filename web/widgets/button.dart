@@ -24,7 +24,7 @@ class Button extends StatefulWidget {
   final String? text;
   final String? link;
 
-  final EventSubscriptionCallback? onTap;
+  final EventCallback? onTap;
 
   final ButtonVariant variant;
 
@@ -34,6 +34,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.normalText;
 
   const Button.primaryText({
@@ -42,6 +43,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.primaryText;
 
   const Button.secondaryText({
@@ -50,6 +52,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.secondaryText;
 
   const Button.primaryFilled({
@@ -58,6 +61,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.primaryFilled;
 
   const Button.secondaryFilled({
@@ -66,6 +70,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.secondaryFilled;
 
   const Button.drawer({
@@ -74,6 +79,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.drawer;
 
   const Button.coloredDrawer({
@@ -82,6 +88,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.coloredDrawer;
 
   const Button.extendedNormalText({
@@ -90,6 +97,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.extendedNormalText;
 
   const Button.extendedPrimaryText({
@@ -98,6 +106,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.extendedPrimaryText;
 
   const Button.extendedSecondaryText({
@@ -106,6 +115,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.extendedSecondaryText;
 
   const Button.extendedPrimaryFilled({
@@ -114,6 +124,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.extendedPrimaryFilled;
 
   const Button.extendedSecondaryFilled({
@@ -122,6 +133,7 @@ class Button extends StatefulWidget {
     this.onTap,
     this.link,
     super.key,
+    super.ref,
   }) : variant = ButtonVariant.extendedSecondaryFilled;
 
   @override
@@ -332,12 +344,14 @@ class _ButtonState extends State<Button> {
             ),
         ],
         onTap: widget.onTap,
-        onPointerLeave: (final event) => setState(() => _highlightOpacity = 0),
-        onPointerUp: (final event) => setState(() => _highlightOpacity = 0.08),
-        onPointerEnter: (final event) => setState(
+        onPointerLeave: (final details) =>
+            setState(() => _highlightOpacity = 0),
+        onPointerUp: (final details) =>
+            setState(() => _highlightOpacity = 0.08),
+        onPointerEnter: (final details) => setState(
           () => _highlightOpacity = 0.08,
         ),
-        onPointerDown: (final event) => setState(
+        onPointerDown: (final details) => setState(
           () => _highlightOpacity = 0.16,
         ),
         style: Style({

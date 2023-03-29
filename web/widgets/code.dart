@@ -13,7 +13,7 @@ class Code extends StatelessWidget {
   final ProgrammingLanguage language;
   final CodeVariant variant;
 
-  const Code.inline(this.value, {super.key})
+  const Code.inline(this.value, {super.key, super.ref})
       : language = ProgrammingLanguage.none,
         variant = CodeVariant.inline;
 
@@ -21,6 +21,7 @@ class Code extends StatelessWidget {
     this.value, {
     this.language = ProgrammingLanguage.none,
     super.key,
+    super.ref,
   }) : variant = CodeVariant.block;
 
   @override
@@ -64,7 +65,7 @@ class Code extends StatelessWidget {
               [
                 Button.normalText(
                   icon: 'content_copy',
-                  onTap: (final event) =>
+                  onTap: (final details) =>
                       html.window.navigator.clipboard!.writeText(value),
                 ),
               ],

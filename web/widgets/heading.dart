@@ -4,12 +4,12 @@ class Heading extends StatelessWidget {
   final Widget child;
   final int level;
 
-  const Heading.h1(this.child, {super.key}) : level = 1;
-  const Heading.h2(this.child, {super.key}) : level = 2;
-  const Heading.h3(this.child, {super.key}) : level = 3;
-  const Heading.h4(this.child, {super.key}) : level = 4;
-  const Heading.h5(this.child, {super.key}) : level = 5;
-  const Heading.h6(this.child, {super.key}) : level = 6;
+  const Heading.h1(this.child, {super.key, super.ref}) : level = 1;
+  const Heading.h2(this.child, {super.key, super.ref}) : level = 2;
+  const Heading.h3(this.child, {super.key, super.ref}) : level = 3;
+  const Heading.h4(this.child, {super.key, super.ref}) : level = 4;
+  const Heading.h5(this.child, {super.key, super.ref}) : level = 5;
+  const Heading.h6(this.child, {super.key, super.ref}) : level = 6;
 
   @override
   Widget build(final BuildContext context) {

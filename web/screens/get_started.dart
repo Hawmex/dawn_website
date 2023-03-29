@@ -11,7 +11,7 @@ import 'features.dart' deferred as features;
 import 'install.dart' deferred as install;
 
 class GetStarted extends StatelessWidget {
-  const GetStarted({super.key});
+  const GetStarted({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -20,7 +20,7 @@ class GetStarted extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Install',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: install.loadLibrary,
           builder: (final context) => install.Install(),
         ),
@@ -28,7 +28,7 @@ class GetStarted extends StatelessWidget {
       next: Button.extendedSecondaryFilled(
         icon: 'chevron_right',
         text: 'Features',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: features.loadLibrary,
           builder: (final context) => features.Features(),
         ),

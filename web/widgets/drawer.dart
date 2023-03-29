@@ -24,7 +24,7 @@ extension DrawerModal on BuildContext {
 class Drawer extends StatefulWidget {
   final List<Button> items;
 
-  const Drawer(this.items, {super.key});
+  const Drawer(this.items, {super.key, super.ref});
 
   @override
   State createState() => _drawerState;
@@ -56,7 +56,7 @@ class _DrawerState extends State<Drawer> {
                 Button.coloredDrawer(
                   icon: item.icon,
                   text: item.text,
-                  onTap: (final event) {},
+                  onTap: (final details) {},
                 )
               else
                 item

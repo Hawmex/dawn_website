@@ -5,7 +5,7 @@ import 'theme.dart';
 class Icon extends StatelessWidget {
   final String value;
 
-  const Icon(this.value, {super.key});
+  const Icon(this.value, {super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {

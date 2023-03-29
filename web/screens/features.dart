@@ -13,7 +13,7 @@ import 'cookbook.dart' deferred as cookbook;
 import 'get_started.dart' deferred as get_started;
 
 class Features extends StatelessWidget {
-  const Features({super.key});
+  const Features({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -22,7 +22,7 @@ class Features extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Get Started',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: get_started.loadLibrary,
           builder: (final context) => get_started.GetStarted(),
         ),
@@ -30,7 +30,7 @@ class Features extends StatelessWidget {
       next: Button.extendedSecondaryFilled(
         icon: 'chevron_right',
         text: 'Cookbook',
-        onTap: (final event) => context.pushRouteLazily(
+        onTap: (final details) => context.pushRouteLazily(
           loader: cookbook.loadLibrary,
           builder: (final context) => cookbook.Cookbook(),
         ),
@@ -76,6 +76,7 @@ class Features extends StatelessWidget {
           Code.inline('StatefulBuilder'),
           Code.inline('FutureBuilder'),
           Code.inline('StreamBuilder'),
+          Code.inline('ConsumerWidget'),
           Code.inline('ConsumerBuilder'),
           Code.inline('Provider'),
           Code.inline('Navigator'),
@@ -96,7 +97,7 @@ import 'package:dawn/dawn.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -130,7 +131,7 @@ import 'package:dawn/dawn.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, super.ref});
 
   @override
   Widget build(final BuildContext context) {
@@ -174,9 +175,9 @@ import 'package:dawn/dawn.dart';
 
 class MyInput extends PaintedWidget {
   final String value;
-  final EventSubscriptionCallback? onChange;
+  final EventCallback? onChange;
 
-  const MyInput(this.value, {this.onChange, super.key});
+  const MyInput(this.value, {this.onChange, super.key, super.ref});
 
   @override
   MyInputNode createNode() => MyInputNode(this);
@@ -188,7 +189,16 @@ class MyInputNode extends ChildlessPaintedNode<MyInput, html.TextInputElement> {
   @override
   void initializeElement() {
     super.initializeElement();
-    addEventSubscription('change', widget.onChange);
+
+    addEventSubscription(
+      type: 'change',
+      callback: widget.onChange,
+      eventTransformer: (final html.Event event) => EventDetails(
+        event,
+        targetNode: this,
+      ),
+    );
+
     element.value = widget.value;
   }
 }
