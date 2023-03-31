@@ -22,7 +22,7 @@ class Features extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Get Started',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: get_started.loadLibrary,
           builder: (final context) => get_started.GetStarted(),
         ),
@@ -30,7 +30,7 @@ class Features extends StatelessWidget {
       next: Button.extendedSecondaryFilled(
         icon: 'chevron_right',
         text: 'Cookbook',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: cookbook.loadLibrary,
           builder: (final context) => cookbook.Cookbook(),
         ),

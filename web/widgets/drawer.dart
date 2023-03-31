@@ -6,28 +6,32 @@ import 'button.dart';
 import 'scrim.dart';
 import 'theme.dart';
 
-final _drawerState = _DrawerState();
+class Drawer extends StatefulWidget {
+  static _DrawerState? _state;
 
-extension DrawerModal on BuildContext {
-  void openDrawer() {
-    _drawerState.setState(() => _drawerState._isOpen = true);
+  static void open() {
+    _state!.setState(() {
+      _state!._isOpen = true;
+    });
 
-    pushModal(
-      onPop: () => _drawerState.setState(() => _drawerState._isOpen = false),
+    Navigator.pushModal(
+      onPop: () {
+        _state!.setState(() {
+          _state!._isOpen = false;
+        });
+      },
     );
   }
 
-  void setDrawerActiveItemIndex(final int index) =>
-      _drawerState._setActiveItemIndex(index);
-}
+  static void setActiveItemIndex(final int index) =>
+      _state!._setActiveItemIndex(index);
 
-class Drawer extends StatefulWidget {
   final List<Button> items;
 
   const Drawer(this.items, {super.key, super.ref});
 
   @override
-  State createState() => _drawerState;
+  State createState() => _DrawerState();
 }
 
 class _DrawerState extends State<Drawer> {
@@ -37,6 +41,18 @@ class _DrawerState extends State<Drawer> {
 
   void _setActiveItemIndex(final int index) =>
       setState(() => _activeItemIndex = index);
+
+  @override
+  void initialize() {
+    super.initialize();
+    Drawer._state = this;
+  }
+
+  @override
+  void dispose() {
+    Drawer._state = null;
+    super.dispose();
+  }
 
   @override
   Widget build(final BuildContext context) {

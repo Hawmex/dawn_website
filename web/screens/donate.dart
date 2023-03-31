@@ -18,7 +18,7 @@ class Donate extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Cookbook',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: cookbook.loadLibrary,
           builder: (final context) => cookbook.Cookbook(),
         ),

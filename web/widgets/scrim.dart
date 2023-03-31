@@ -20,7 +20,7 @@ class Scrim extends StatelessWidget {
 
       return Container(
         [],
-        onPointerDown: (final details) => context.pop(),
+        onPointerDown: (final details) => Navigator.pop(),
         style: Style({
           'position': 'fixed',
           'top': '0px',

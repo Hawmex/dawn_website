@@ -30,7 +30,7 @@ class TopBar extends StatelessWidget {
                 else
                   Button.normalText(
                     icon: 'menu',
-                    onTap: (final details) => context.openDrawer(),
+                    onTap: (final details) => Drawer.open(),
                   ),
               ])
             ],

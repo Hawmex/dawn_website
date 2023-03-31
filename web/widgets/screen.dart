@@ -27,7 +27,7 @@ class Screen extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (drawerActiveItemIndex != null) {
-      context.setDrawerActiveItemIndex(drawerActiveItemIndex!);
+      Drawer.setActiveItemIndex(drawerActiveItemIndex!);
     }
 
     return ConsumerBuilder<Theme>((final context, final store) {

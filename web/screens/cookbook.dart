@@ -21,7 +21,7 @@ class Cookbook extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Features',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: features.loadLibrary,
           builder: (final context) => features.Features(),
         ),
@@ -29,7 +29,7 @@ class Cookbook extends StatelessWidget {
       next: Button.extendedSecondaryFilled(
         icon: 'chevron_right',
         text: 'Donate',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: donate.loadLibrary,
           builder: (final context) => donate.Donate(),
         ),
@@ -100,12 +100,12 @@ class MyVideoNode extends ChildlessPaintedNode<MyVideo, html.VideoElement> {
         ItemsList.unordered([
           Paragraph([
             Text('To navigate to a new route, you can use '),
-            Code.inline('Navigation.pushRoute'),
+            Code.inline('Navigator.pushRoute'),
             Text('.')
           ]),
           Paragraph([
             Text('To go back, you can call '),
-            Code.inline('Navigation.pop'),
+            Code.inline('Navigator.pop'),
           ]),
         ]),
         Code.block(
@@ -121,7 +121,7 @@ class Page1 extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Text(
       'Page 1',
-      onTap: (final details) => context.pushRoute(
+      onTap: (final details) => Navigator.pushRoute(
         builder: (final context) => const Page2(),
       ),
     );
@@ -133,7 +133,7 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Text('Page 2', onTap: (final details) => context.pop());
+    return Text('Page 2', onTap: (final details) => Navigator.pop());
   }
 }
 ''',
@@ -142,7 +142,7 @@ class Page2 extends StatelessWidget {
         Heading.h3(Text('Lazy Loading Routes')),
         Paragraph([
           Text('To lazy load a route, you can call '),
-          Code.inline('Navigation.pushRouteLazily'),
+          Code.inline('Navigator.pushRouteLazily'),
           Text(' instead.'),
         ]),
         Code.block(
@@ -161,7 +161,7 @@ class App extends StatelessWidget {
     return Navigator(
       child: Text(
         'Go to route one',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: route_one.loadLibrary,
           builder: (final context) => route_one.RouteOne(),
         ),
@@ -179,7 +179,7 @@ class App extends StatelessWidget {
             "history when opened. They are also closed when the browser's "
             "back button is tapped or ",
           ),
-          Code.inline('Navigation.pop'),
+          Code.inline('Navigator.pop'),
           Text(' is called. Remember that '),
           Code.inline('Navigator'),
           Text(' should be constructed in your program.'),
@@ -208,11 +208,11 @@ class _AppState extends State<App> {
           _isModalShown ? 'Close modal' : 'Open modal',
           onTap: (final details) {
             if (_isModalShown) {
-              context.pop();
+              Navigator.pop();
             } else {
               setState(() => _isModalShown = true);
 
-              context.pushModal(
+              Navigator.pushModal(
                 onPop: () => setState(() => _isModalShown = false),
               );
             }

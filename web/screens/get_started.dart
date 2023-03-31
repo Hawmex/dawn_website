@@ -20,7 +20,7 @@ class GetStarted extends StatelessWidget {
       previous: Button.extendedNormalText(
         icon: 'chevron_left',
         text: 'Install',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: install.loadLibrary,
           builder: (final context) => install.Install(),
         ),
@@ -28,7 +28,7 @@ class GetStarted extends StatelessWidget {
       next: Button.extendedSecondaryFilled(
         icon: 'chevron_right',
         text: 'Features',
-        onTap: (final details) => context.pushRouteLazily(
+        onTap: (final details) => Navigator.pushRouteLazily(
           loader: features.loadLibrary,
           builder: (final context) => features.Features(),
         ),

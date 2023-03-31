@@ -89,59 +89,71 @@ class App extends StatelessWidget {
             Button.drawer(
               text: 'Home',
               icon: 'home',
-              onTap: (final details) => context
-                ..pushRoute(builder: (final context) => const Home())
-                ..pop(),
+              onTap: (final details) {
+                Navigator.pop();
+
+                Navigator.pushRoute(builder: (final context) => const Home());
+              },
             ),
             Button.drawer(
               text: 'Install',
               icon: 'download',
-              onTap: (final details) => context
-                ..pushRouteLazily(
+              onTap: (final details) {
+                Navigator.pop();
+
+                Navigator.pushRouteLazily(
                   loader: install.loadLibrary,
                   builder: (final context) => install.Install(),
-                )
-                ..pop(),
+                );
+              },
             ),
             Button.drawer(
               text: 'Get Started',
               icon: 'start',
-              onTap: (final details) => context
-                ..pushRouteLazily(
+              onTap: (final details) {
+                Navigator.pop();
+
+                Navigator.pushRouteLazily(
                   loader: get_started.loadLibrary,
                   builder: (final context) => get_started.GetStarted(),
-                )
-                ..pop(),
+                );
+              },
             ),
             Button.drawer(
               text: 'Features',
               icon: 'list',
-              onTap: (final details) => context
-                ..pushRouteLazily(
+              onTap: (final details) {
+                Navigator.pop();
+
+                Navigator.pushRouteLazily(
                   loader: features.loadLibrary,
                   builder: (final context) => features.Features(),
-                )
-                ..pop(),
+                );
+              },
             ),
             Button.drawer(
               text: 'Cookbook',
               icon: 'book',
-              onTap: (final details) => context
-                ..pushRouteLazily(
+              onTap: (final details) {
+                Navigator.pop();
+
+                Navigator.pushRouteLazily(
                   loader: cookbook.loadLibrary,
                   builder: (final context) => cookbook.Cookbook(),
-                )
-                ..pop(),
+                );
+              },
             ),
             Button.drawer(
               text: 'Donate',
               icon: 'monetization_on',
-              onTap: (final details) => context
-                ..pushRouteLazily(
+              onTap: (final details) {
+                Navigator.pop();
+
+                Navigator.pushRouteLazily(
                   loader: donate.loadLibrary,
                   builder: (final context) => donate.Donate(),
-                )
-                ..pop(),
+                );
+              },
             ),
             const Button.drawer(
               icon: 'open_in_new',

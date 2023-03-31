@@ -83,11 +83,10 @@ class Home extends StatelessWidget {
                     Button.secondaryFilled(
                       text: 'Install',
                       icon: 'download',
-                      onTap: (final details) => context
-                        ..pushRouteLazily(
-                          loader: install.loadLibrary,
-                          builder: (final context) => install.Install(),
-                        ),
+                      onTap: (final details) => Navigator.pushRouteLazily(
+                        loader: install.loadLibrary,
+                        builder: (final context) => install.Install(),
+                      ),
                     )
                   ]),
                   const Container([
