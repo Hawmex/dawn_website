@@ -32,6 +32,91 @@ class App extends StatelessWidget {
     return ConsumerBuilder<Theme>((final context, final store) {
       return Container(
         [
+          Drawer([
+            Button.drawer(
+              text: 'Home',
+              icon: 'home',
+              onTap: (final details) {
+                Navigator.pushRoute(builder: (final context) => const Home());
+                Navigator.pop();
+              },
+            ),
+            Button.drawer(
+              text: 'Install',
+              icon: 'download',
+              onTap: (final details) {
+                Navigator.pushRouteLazily(
+                  loader: install.loadLibrary,
+                  builder: (final context) => install.Install(),
+                );
+
+                Navigator.pop();
+              },
+            ),
+            Button.drawer(
+              text: 'Get Started',
+              icon: 'start',
+              onTap: (final details) {
+                Navigator.pushRouteLazily(
+                  loader: get_started.loadLibrary,
+                  builder: (final context) => get_started.GetStarted(),
+                );
+
+                Navigator.pop();
+              },
+            ),
+            Button.drawer(
+              text: 'Features',
+              icon: 'list',
+              onTap: (final details) {
+                Navigator.pushRouteLazily(
+                  loader: features.loadLibrary,
+                  builder: (final context) => features.Features(),
+                );
+
+                Navigator.pop();
+              },
+            ),
+            Button.drawer(
+              text: 'Cookbook',
+              icon: 'book',
+              onTap: (final details) {
+                Navigator.pushRouteLazily(
+                  loader: cookbook.loadLibrary,
+                  builder: (final context) => cookbook.Cookbook(),
+                );
+
+                Navigator.pop();
+              },
+            ),
+            Button.drawer(
+              text: 'Donate',
+              icon: 'monetization_on',
+              onTap: (final details) {
+                Navigator.pushRouteLazily(
+                  loader: donate.loadLibrary,
+                  builder: (final context) => donate.Donate(),
+                );
+
+                Navigator.pop();
+              },
+            ),
+            const Button.drawer(
+              icon: 'open_in_new',
+              text: 'Pub',
+              link: 'https://pub.dev/packages/dawn',
+            ),
+            const Button.drawer(
+              icon: 'open_in_new',
+              text: 'GitHub',
+              link: 'https://github.com/Hawmex/dawn',
+            ),
+            const Button.drawer(
+              text: 'Contribute To This Website',
+              icon: 'open_in_new',
+              link: 'https://github.com/Hawmex/dawn_website',
+            )
+          ]),
           Container(
             [
               Navigator(
@@ -85,92 +170,6 @@ class App extends StatelessWidget {
             ],
             style: const Style({'overflow': 'hidden'}),
           ),
-          Drawer([
-            Button.drawer(
-              text: 'Home',
-              icon: 'home',
-              onTap: (final details) {
-                Navigator.pop();
-
-                Navigator.pushRoute(builder: (final context) => const Home());
-              },
-            ),
-            Button.drawer(
-              text: 'Install',
-              icon: 'download',
-              onTap: (final details) {
-                Navigator.pop();
-
-                Navigator.pushRouteLazily(
-                  loader: install.loadLibrary,
-                  builder: (final context) => install.Install(),
-                );
-              },
-            ),
-            Button.drawer(
-              text: 'Get Started',
-              icon: 'start',
-              onTap: (final details) {
-                Navigator.pop();
-
-                Navigator.pushRouteLazily(
-                  loader: get_started.loadLibrary,
-                  builder: (final context) => get_started.GetStarted(),
-                );
-              },
-            ),
-            Button.drawer(
-              text: 'Features',
-              icon: 'list',
-              onTap: (final details) {
-                Navigator.pop();
-
-                Navigator.pushRouteLazily(
-                  loader: features.loadLibrary,
-                  builder: (final context) => features.Features(),
-                );
-              },
-            ),
-            Button.drawer(
-              text: 'Cookbook',
-              icon: 'book',
-              onTap: (final details) {
-                Navigator.pop();
-
-                Navigator.pushRouteLazily(
-                  loader: cookbook.loadLibrary,
-                  builder: (final context) => cookbook.Cookbook(),
-                );
-              },
-            ),
-            Button.drawer(
-              text: 'Donate',
-              icon: 'monetization_on',
-              onTap: (final details) {
-                Navigator.pop();
-
-                Navigator.pushRouteLazily(
-                  loader: donate.loadLibrary,
-                  builder: (final context) => donate.Donate(),
-                );
-              },
-            ),
-            const Button.drawer(
-              icon: 'open_in_new',
-              text: 'Pub',
-              link: 'https://pub.dev/packages/dawn',
-            ),
-            const Button.drawer(
-              icon: 'open_in_new',
-              text: 'GitHub',
-              link: 'https://github.com/Hawmex/dawn',
-            ),
-            const Button.drawer(
-              text: 'Contribute To This Website',
-              icon: 'open_in_new',
-              link: 'https://github.com/Hawmex/dawn_website',
-            )
-          ]),
         ],
         style: Style({
           'background': store.backgroundColor.toString(),

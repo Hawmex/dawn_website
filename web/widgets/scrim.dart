@@ -31,6 +31,7 @@ class Scrim extends StatelessWidget {
               store.onSurfaceColor.withAlpha(active ? 0.08 : 0).toString(),
           'visibility': active ? 'visible' : 'hidden',
           'transition': transition,
+          'z-index': '2',
         }),
       );
     });

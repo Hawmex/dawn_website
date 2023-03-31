@@ -35,9 +35,9 @@ class Drawer extends StatefulWidget {
 }
 
 class _DrawerState extends State<Drawer> {
-  bool _isOpen = false;
+  bool _isOpen = Drawer._state?._isOpen ?? false;
 
-  int _activeItemIndex = -1;
+  int _activeItemIndex = Drawer._state?._activeItemIndex ?? -1;
 
   void _setActiveItemIndex(final int index) =>
       setState(() => _activeItemIndex = index);
@@ -110,6 +110,7 @@ class _DrawerState extends State<Drawer> {
               'transform': _isOpen ? 'translateX(0%)' : 'translateX(-100%)',
               'transition': transition,
               'overflow': 'auto',
+              'z-index': '2',
             }),
           ),
         ],
