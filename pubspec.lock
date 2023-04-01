@@ -181,10 +181,10 @@ packages:
     dependency: "direct main"
     description:
       name: dawn
-      sha256: "98e87102d1e11b99298c5cbae6afb8b869c33224cea49a3269224645fd3855eb"
+      sha256: e2336942cca985b6905d3a2fefda734870a0f8af5635db73ea5772df044a3937
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.0"
+    version: "7.1.1"
   dawn_lints:
     dependency: "direct dev"
     description:
